@@ -16,18 +16,19 @@ class CreateEthicalArguments < ActiveRecord::Migration
       t.references :concerned_party, index: true, foreign_key: true
     end
 
-    create_table :attribute_importance_rankings do |t|
+    create_table :imperative_rankings do |t|
       t.string :attribute
+      t.string :operation
       t.integer :importance_ranking
       t.references :concerned_party, index: true, foreign_key: true
     end
 
     create_table :possible_actions do |t|
-      t.string :name
+      t.string :description
       t.integer :morality_ranking
     end
 
-    create_table :action_effect_likelihoods do |t|
+    create_table :effect_likelihoods do |t|
       t.string :attribute
       t.string :operation
       t.decimal :likelihood

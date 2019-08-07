@@ -21,11 +21,11 @@ class EthicalArgumentsController < ApplicationController
     end
   end
 
-  get '/tweets/:id' do
+  get '/ethical_arguments/:id' do
     if logged_in?
-      @tweet = Tweet.find(params[:id])
+      @ethical_argument = EthicalArgument.find(params[:id])
 
-      erb :"/tweets/show"
+      erb :"/ethical_arguments/show"
     else
       redirect '/login'
     end

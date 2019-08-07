@@ -2,7 +2,7 @@
 
 <p>Click <a href="/authored">here</a> to view the ethical arguments you've authored.</p>
 
-<% @user..each do |ethical_argument| %>
+<% @user.subscribed_ethical_arguments.each do |ethical_argument| %>
   <% EthicalArgument.all_topics.each do |topic| %>
     <ul>
       <li><h3><%= topic.capitalize %></h3></li>

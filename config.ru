@@ -5,6 +5,6 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 use Rack::MethodOverride
-use TweetsController
+use EthicalArgumentsController
 use UsersController
 run ApplicationController

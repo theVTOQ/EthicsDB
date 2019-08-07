@@ -1,9 +1,62 @@
-<h1>Tweet by <%= @tweet.user.username %>:</h1>
-<p><%= @tweet.content %></p>
-<a href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
+<<h1>The Ethical Arguments You Subscribe To:</h1>
 
-<form action="/tweets/<%= @tweet.id %>" method="POST">
+<p>Click <a href="/authored">here</a> to view the ethical arguments you've authored.</p>
+
+<h2><%= @ethical_argument.title %></h2>
+<h3>Topic: <%= @ethical_argument.topic %></h3>
+<p>Summary: <%= @ethical_argument.summary %></p>
+
+<h4>Concerned Parties:</h4>
+<ol>
+<% @ethical_argument.concerned_partys.each do |concerned_party| %>
+  <li>
+    <h4><%= concerned_party.identifier %></h4>
+    <h4>Circumstances:</h4>
+    <ol>
+    <% concerned_party.circumstances.each do |circumstance| %>
+      <li><p><%= circumstance.context %></p></li>
+    <% end %>
+    </ol>
+  </li>
+<% end %>
+</ol>
+
+<h4>Ranking of Moral Imperatives:</h4>
+<p>Basically, it's up to you to rank how important it is for each of these concerned parties to experience certain effects on certain attributes.</p>
+<ol>
+<% @ethical_argument.imperative_rankings.each do |ranking| %>
+  <li>
+    <p>One must <%= ranking.operation %> the <%= ranking.attribute %> of <%= ranking.concerned_party.identifier %></p>
+  </li>
+<% end %>
+</ol>
+
+<h4>Possible Actions Ranked by Morality:</h4>
+<p>This list reflects how well these actions effect the ranked moral imperatives.</p>
+<ol>
+<% @ethical_argument.possible_actions.sort_by{|action| action.morality_ranking}.each do |action| %>
+  <li>
+    <p><%= action.description %></p><br>
+    <p>Likely Effects:</p>
+    <ol>
+    <% action.effect_likelihoods.each do |effect_likelihood| %>
+      <li>
+        <p>Attribute: <%= effect_likelihood.attribute %></p>
+        <p>Operation: <%= effect_likelihood.operation %></p>
+        <p>Likelihood: <%= effect_likelihood.likelihood * 100 %>%</p>
+      </li>
+    <% end %>
+    </ol>
+  </li>
+<% end %>
+</ol>
+
+<% if @ethical_argument.author_id == session[:user_id] %>
+  <a href="/ethical_arguments/<%= @ethical_argument.id %>/edit">Edit Ethical Argument</a>
+<% end %>
+
+<form action="/ethical_arguments/<%= @ethical_argument.id %>" method="POST">
   <input type="hidden" id="hidden" name="_method" value="delete">
 
-  <input type="submit" id="submit" value="Delete Tweet">
+  <input type="submit" id="submit" value="Delete Ethical Argument">
 </form>
