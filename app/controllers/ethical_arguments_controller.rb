@@ -3,10 +3,31 @@ class EthicalArgumentsController < ApplicationController
   get '/ethical_arguments' do
     if logged_in?
       @user = current_user
-      @ranked_args_by_topic = EthicalArgument.all.map {|arg| [arg.topic, arg] }.to_h
-      @ranked_args_by_topic.sort_by! {|topic, arg| arg.subscribers.count }
-      
+      @sorted_and_ranked_args = sort_and_rank(EthicalArgument.all)
+
       erb :"/ethical_arguments/index"
+    else
+      redirect '/login'
+    end
+  end
+
+  get '/ethical_arguments/authored' do
+    if logged_in?
+      @user = current_user
+      @sorted_and_ranked_args = sort_and_rank(@user.authored_ethical_arguments)
+
+      erb :"/ethical_arguments/new"
+    else
+      redirect '/login'
+    end
+  end
+
+  get '/ethical_arguments/subscribed' do
+    if logged_in?
+      @user = current_user
+      @sorted_and_ranked_args = sort_and_rank(@user.subscribed_ethical_arguments)
+
+      erb :"/ethical_arguments/new"
     else
       redirect '/login'
     end
@@ -16,7 +37,7 @@ class EthicalArgumentsController < ApplicationController
     if logged_in?
       @user = current_user
 
-      erb :"/ethical_argument./new"
+      erb :"/ethical_arguments/new"
     else
       redirect '/login'
     end

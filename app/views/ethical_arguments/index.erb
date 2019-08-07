@@ -10,7 +10,7 @@
     <h3>Topic: <%= topic.capitalize %></h3>
     <ol>
     <% ethical_arguments.each do |ethical_argument| %>
-      <% if ethical_argument.topic == topic && !ethical_argument.is_private %>
+      <% if !ethical_argument.is_private %>
         <li>
           <a href="/ethical_arguments/<%= ethical_argument.id %>"><%= ethical_argument.title %></a>
           <p><%= ethical_argument.summary %>
