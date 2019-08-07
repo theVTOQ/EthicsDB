@@ -3,12 +3,12 @@
 <p>Click <a href="/authored">here</a> to view the ethical arguments you've authored.</p>
 <p>Click <a href="/subscribed">here</a> to view the ethical arguments you subscribe to.</p>
 
-<h2>Here is a Catalog of all Ethical Arguments Sorted by Topic:</h2>
+<h2>Here is a Catalog of all Ethical Arguments Sorted by Topic and Ranked by Subscriber Count:</h2>
 <ul>
-<% @args_by_topic.each do |topic, ethical_arguments| %>
+<% @sorted_and_ranked_args.each do |topic, ethical_arguments| %>
   <li>
     <h3>Topic: <%= topic.capitalize %></h3>
-    <ul>
+    <ol>
     <% ethical_arguments.each do |ethical_argument| %>
       <% if ethical_argument.topic == topic && !ethical_argument.is_private %>
         <li>
@@ -17,7 +17,7 @@
         </li><br>
       <% end %>
     <% end %>
-    </ul>
+    </ol>
   </li>
   <br>
 <% end %>

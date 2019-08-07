@@ -3,8 +3,9 @@ class EthicalArgumentsController < ApplicationController
   get '/ethical_arguments' do
     if logged_in?
       @user = current_user
-      @args_by_topic = EthicalArgument.all.map {|arg| [arg.topic, arg] }.to_h
-
+      @ranked_args_by_topic = EthicalArgument.all.map {|arg| [arg.topic, arg] }.to_h
+      @ranked_args_by_topic.sort_by! {|topic, arg| arg.subscribers.count }
+      
       erb :"/ethical_arguments/index"
     else
       redirect '/login'
