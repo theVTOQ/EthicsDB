@@ -4,18 +4,21 @@
 <p>Click <a href="/subscribed">here</a> to view the ethical arguments you subscribe to.</p>
 
 <h2>Here is a Catalog of all Ethical Arguments Sorted by Topic:</h2>
-<% @ethical_arguments.each do |ethical_argument| %>
-  <% EthicalArgument.all_topics.each do |topic| %>
+<ul>
+<% @args_by_topic.each do |topic, ethical_arguments| %>
+  <li>
+    <h3>Topic: <%= topic.capitalize %></h3>
     <ul>
-      <li><h3><%= topic.capitalize %></h3></li>
-        <ul>
-          <% if ethical_argument.topic == topic && !ethical_argument.is_private %>
-            <li>
-              <a href="/ethical_arguments/<%= ethical_argument.id %>"><%= ethical_argument.title %></a>
-              <p><%= ethical_argument.summary %>
-            </li><br>
-          <% end %>
-        </ul>
+    <% ethical_arguments.each do |ethical_argument| %>
+      <% if ethical_argument.topic == topic && !ethical_argument.is_private %>
+        <li>
+          <a href="/ethical_arguments/<%= ethical_argument.id %>"><%= ethical_argument.title %></a>
+          <p><%= ethical_argument.summary %>
+        </li><br>
+      <% end %>
+    <% end %>
     </ul>
-  <% end %>
+  </li>
+  <br>
 <% end %>
+</ul>

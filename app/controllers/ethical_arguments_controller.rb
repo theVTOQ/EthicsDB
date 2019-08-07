@@ -3,7 +3,7 @@ class EthicalArgumentsController < ApplicationController
   get '/ethical_arguments' do
     if logged_in?
       @user = current_user
-      @ethical_arguments = EthicalArgument.all
+      @args_by_topic = EthicalArgument.all.map {|arg| [arg.topic, arg] }.to_h
 
       erb :"/ethical_arguments/index"
     else
