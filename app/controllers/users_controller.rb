@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if logged_in?
-      redirect '/tweets'
+      redirect '/ethical_arguments'
     else
       erb :"/users/login"
     end

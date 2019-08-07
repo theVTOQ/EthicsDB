@@ -1,21 +1,21 @@
-class TweetsController < ApplicationController
+class EthicalArgumentsController < ApplicationController
 
-  get '/tweets' do
+  get '/ethical_arguments' do
     if logged_in?
       @user = current_user
-      @tweets = Tweet.all
+      @ethical_arguments = EthicalArgument.all
 
-      erb :"/tweets/index"
+      erb :"/ethical_arguments/index"
     else
       redirect '/login'
     end
   end
 
-  get '/tweets/new' do
+  get '/ethical_arguments/new' do
     if logged_in?
       @user = current_user
 
-      erb :"/tweets/new"
+      erb :"/ethical_argument./new"
     else
       redirect '/login'
     end

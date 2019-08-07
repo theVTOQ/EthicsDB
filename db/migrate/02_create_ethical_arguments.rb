@@ -2,6 +2,9 @@ class CreateEthicalArguments < ActiveRecord::Migration
   def change
     create_table :ethical_arguments do |t|
       t.string :topic
+      t.string :title
+      t.string :summary
+      t.boolean :is_private
     end
 
     create_table :concerned_partys do |t|

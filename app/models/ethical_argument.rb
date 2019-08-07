@@ -1,6 +1,6 @@
 class EthicalArgument < ActiveRecord::Base
-  has_many :user_ethical_arguments
-  has_many :users, through: :user_ethical_arguments
+  belongs_to :author, class_name: 'User', foreign_key: author_id
+  has_many :subscribers, class_name: 'User', foreign_key: subscriber_id
   has_many :concerned_partys
   has_many :circumstances, through: :concerned_partys
   has_many :attribute_importance_rankings, through: :concerned_partys

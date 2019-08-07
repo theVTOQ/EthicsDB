@@ -1,0 +1,19 @@
+<h1>The Ethical Arguments You Subscribe To:</h1>
+
+<p>Click <a href="/authored">here</a> to view the ethical arguments you've authored.</p>
+
+<% @user..each do |ethical_argument| %>
+  <% EthicalArgument.all_topics.each do |topic| %>
+    <ul>
+      <li><h3><%= topic.capitalize %></h3></li>
+        <ul>
+          <% if ethical_argument.topic == topic && !ethical_argument.is_private %>
+            <li>
+              <a href="/ethical_arguments/<%= ethical_argument.id %>"><%= ethical_argument.title %></a>
+              <p><%= ethical_argument.summary %>
+            </li><br>
+          <% end %>
+        </ul>
+    </ul>
+  <% end %>
+<% end %>
