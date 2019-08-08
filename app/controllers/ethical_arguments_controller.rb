@@ -54,12 +54,12 @@ class EthicalArgumentsController < ApplicationController
     end
   end
 
-  get '/tweets/:id/edit' do
+  get '/ethical_arguments/:id/edit' do
     if logged_in?
-      @tweet = Tweet.find(params[:id])
+      @ethical_argument  = EthicalArgument.find(params[:id])
 
-      if current_user.tweets.include?(@tweet)
-        erb :"/tweets/edit"
+      if current_user.authored_ethical_arguments.include?(@ethical_argument)
+        erb :"/ethical_arguments/edit"
       else
         redirect '/login'
       end
@@ -110,7 +110,7 @@ class EthicalArgumentsController < ApplicationController
     end
   end
 
-  patch '/tweets/:id' do
+  patch '/ethical_arguments/:id' do
     if !params["tweet"]["content"].empty?
       Tweet.find(params[:id]).update(params["tweet"])
       redirect "/tweets/#{params[:id]}"

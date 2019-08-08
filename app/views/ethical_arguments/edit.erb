@@ -1,9 +1,91 @@
-<h1>Edit Tweet</h1>
-<form action='/tweets/<%= @tweet.id %>' method="post">
-    <input type="hidden" id="hidden" name="_method" value="patch"
+<h1>Edit Ethical Argument</h1>
+<form action='/ethical_arguments/<%= @ethical_argument.id %>' method="post">
+  <input type="hidden" id="hidden" name="_method" value="patch">
 
-    <label for="content">Content:</label>
-    <input type="text" id="content" name="tweet[content]" placeholder=<%= @tweet.content %>><br>
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="ethical_argument[title]" placeholder=<%= @ethical_argument.title %>><br>
 
-    <input type="submit" id="submit" name="submit" value="submit">
+  <label for="topic">Topic:</label>
+  <input type="text" id="topic" name="ethical_argument[topic]" placeholder=<%= @ethical_argument.topic %>><br>
+
+  <label for="summary">Summary:</label>
+  <input type="text" id="summary" name="ethical_argument[summary]" placeholder=<%= @ethical_argument.summary %>><br>
+
+  <%= concerned_party_1 = @ethical_argument.concerned_partys[0] %>
+  <%= concerned_party_2 = @ethical_argument.concerned_partys[1] %>
+
+  <!-- Concerned Party 1 -->
+  <h3>Create Concerned Party 1:</h3>
+  <label for="concerned_party_1_identifier">Identifier:</label>
+  <input type="text" id="concerned_party_1_identifier" name="concerned_partys[][identifier]" placeholder=<%= concerned_party_1.identifier %>><br>
+
+  <label for="circumstance_1_context">Circumstance:</label>
+  <input type="text" id="circumstance_1_context" name="circumstances[][context]" placeholder=<%= concerned_party_1.circumstances[0].context %>><br>
+
+  <!-- Concerned Party 1: Imperative Ranking -->
+  <h4>Create Imperative Ranking for Party 1:</h4>
+  <label for="imperative_ranking_1_attribute">Attribute:</label>
+  <input type="text" id="imperative_ranking_1_attribute" name="imperative_rankings[][attribute]" placeholder=<%= concerned_party_1.imperative_rankings[0].attribute %>><br>
+
+  <label for="imperative_ranking_1_operation">Operation:</label>
+  <input type="text" id="imperative_ranking_1_operation" name="imperative_rankings[][operation]" placeholder=<%= concerned_party_1.imperative_rankings[0].operation %>><br>
+
+  <label for="imperative_ranking_1_importance_ranking">Importance Ranking:</label><br>
+  <input type="number" id="imperative_ranking_1_importance_ranking" name="imperative_rankings[][importance_ranking]" min="1" max="2" placeholder=<%= concerned_party_1.imperative_rankings[0].importance_ranking %>><br>
+
+  <!-- Concerned Party 2 -->
+  <h3>Create Concerned Party 2:</h3>
+  <label for="concerned_party_2_identifier">Identifier:</label>
+  <input type="text" id="concerned_party_2_identifier" name="concerned_partys[][identifier]" placeholder=<%= concerned_party_2.identifier %>><br>
+
+  <label for="circumstance_2_context">Circumstance:</label>
+  <input type="text" id="circumstance_2_context" name="circumstances[][context]" placeholder=<%= concerned_party_2.circumstances[0].context %>><br>
+
+  <!-- Concerned Party 2: Imperative Ranking -->
+  <h4>Create Imperative Ranking for Party 2:</h4>
+  <label for="imperative_ranking_2_attribute">Attribute:</label>
+  <input type="text" id="imperative_ranking_2_attribute" name="imperative_rankings[][attribute]" placeholder=<%= concerned_party_2.imperative_rankings[0].attribute %>><br>
+
+  <label for="imperative_ranking_2_operation">Operation:</label>
+  <input type="text" id="imperative_ranking_2_operation" name="imperative_rankings[][operation]" placeholder=<%= concerned_party_2.imperative_rankings[0].operation %>><br>
+
+  <label for="imperative_ranking_2_importance_ranking">Importance Ranking:</label><br>
+  <input type="number" id="imperative_ranking_2_importance_ranking" name="imperative_rankings[][importance_ranking]" min="1" max="2" placeholder=<%= concerned_party_2.imperative_rankings[0].importance_ranking %>><br>
+
+  <% possible_action_1 = @ethical_argument.possible_actions[0] %>
+  <% possible_action_2 = @ethical_argument.possible_actions[0] %>
+
+  <!-- Possible Action 1 -->
+  <h3>Possible Action 1:</h3>
+  <label for="possible_action_1_description">Description:</label>
+  <input type="text" id="concerned_party_1_description" name="possible_actions[][description]" placeholder=<%= possible_action_1.description %>><br>
+
+  <!-- Possible Action 1: Effect Likelihood -->
+  <h4>Effect Likelihood:</h4>
+  <label for="effect_likelihood_1_attribute">Attribute:</label>
+  <input type="text" id="effect_likelihood_1_attribute" name="possible_actions[][attribute]" placeholder=<%= possible_action_1.effect_likelihoods[0].attribute %>><br>
+
+  <label for="effect_likelihood_1_operation">Operation:</label>
+  <input type="text" id="effect_likelihood_1_operation" name="possible_actions[][operation]" possible_action_1.effect_likelihoods[0].operation %>><br>
+
+  <label for="effect_likelihood_1_likelihood">Likelihood:</label>
+  <input type="text" id="effect_likelihood_1_likelihood" name="possible_actions[][likelihood]" possible_action_1.effect_likelihoods[0].likelihood %>><br>
+
+  <!-- Possible Action 2 -->
+  <h3>Possible Action 2:</h3>
+  <label for="possible_action_2_description">Description:</label>
+  <input type="text" id="concerned_party_2_description" name="possible_actions[][description]" placeholder=<%= possible_action_2.description %>><br>
+
+  <!-- Possible Action 2: Effect Likelihood -->
+  <h4>Effect Likelihood:</h4>
+  <label for="effect_likelihood_2_attribute">Attribute:</label>
+  <input type="text" id="effect_likelihood_2_attribute" name="possible_actions[][attribute]" placeholder=<%= possible_action_2.effect_likelihoods[0].attribute %>><br>
+
+  <label for="effect_likelihood_2_operation">Operation:</label>
+  <input type="text" id="effect_likelihood_2_operation" name="possible_actions[][operation]" possible_action_2.effect_likelihoods[0].operation %>><br>
+
+  <label for="effect_likelihood_2_likelihood">Likelihood:</label>
+  <input type="text" id="effect_likelihood_2_likelihood" name="possible_actions[][likelihood]" possible_action_2.effect_likelihoods[0].likelihood %>><br>
+
+  <input type="submit" id="submit" name="submit" value="submit">
 </form>
