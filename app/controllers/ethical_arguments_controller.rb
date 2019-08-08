@@ -68,6 +68,20 @@ class EthicalArgumentsController < ApplicationController
     end
   end
 
+  post '/subscribe/:id' do
+    ethical_argument = EthicalArgument.find(params[:id])
+
+    current_user.subscribed_ethical_arguments << ethical_argument
+    redirect "/ethical_arguments/#{params[:id]}"
+  end
+
+  post '/unsubscribe/:id' do
+    ethical_argument = EthicalArgument.find(params[:id])
+
+    current_user.subscribed_ethical_arguments.delete(ethical_argument)
+    redirect "/ethical_arguments/#{params[:id]}"
+  end
+
   post '/ethical_arguments/authored' do
     if !params["ethical_argument"].empty?
       #in future, use find_or_create_by ?

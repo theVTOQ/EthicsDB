@@ -53,8 +53,17 @@
 
 <% if @ethical_argument.author_id == session[:user_id] %>
   <a href="/ethical_arguments/<%= @ethical_argument.id %>/edit">Edit Ethical Argument</a>
-<% end %>
+<% elsif current_user.subscribed_ethical_arguments.include?(@ethical_argument) %>
+  <p>You subscribe to this ethical argument.</p>
 
+  <form action="/unsubscribe/<%= @ethical_argument.id %>" method="post">
+    <input type="submit" id="unsubscribe" name="unsubscribe" value="Unsubscribe">
+  </form>
+<% else %>
+  <form action="/subscribe/<%= @ethical_argument.id %>" method="post">
+    <input type="submit" id="subscribe" name="subscribe" value="Subscribe">
+  </form>
+<% end %>
 <form action="/ethical_arguments/<%= @ethical_argument.id %>" method="POST">
   <input type="hidden" id="hidden" name="_method" value="delete">
 
