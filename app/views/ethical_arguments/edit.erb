@@ -62,6 +62,10 @@
 
   <!-- Possible Action 1: Effect Likelihood -->
   <h4>Effect Likelihood:</h4>
+  <label for="affected_party_1">Affected Party:</label>
+  <input type="radio" id="effect_likelihood_1_affected_party_1" name="effect_likelihood_1_affected_party" value="1" <%= 'checked' if possible_action_1.effect_likelihoods[0].affected_party == concerned_party_1%>><br>
+  <input type="radio" id="effect_likelihood_1_affected_party_2" name="effect_likelihood_1_affected_party" value="2" <%= 'checked' if possible_action_1.effect_likelihoods[0].affected_party == concerned_party_2%>><br>
+
   <label for="effect_likelihood_1_attribute">Attribute:</label>
   <input type="text" id="effect_likelihood_1_attribute" name="possible_actions[][attribute]" placeholder=<%= possible_action_1.effect_likelihoods[0].attribute %>><br>
 
@@ -78,6 +82,10 @@
 
   <!-- Possible Action 2: Effect Likelihood -->
   <h4>Effect Likelihood:</h4>
+  <label for="affected_party_2">Affected Party:</label>
+  <input type="radio" id="effect_likelihood_2_affected_party_1" name="effect_likelihood_2_affected_party" value="1" <%= 'checked' if possible_action_2.effect_likelihoods[0].affected_party == concerned_party_1%>><br>
+  <input type="radio" id="effect_likelihood_2_affected_party_2" name="effect_likelihood_2_affected_party" value="2" <%= 'checked' if possible_action_2.effect_likelihoods[0].affected_party == concerned_party_2%>><br>
+
   <label for="effect_likelihood_2_attribute">Attribute:</label>
   <input type="text" id="effect_likelihood_2_attribute" name="possible_actions[][attribute]" placeholder=<%= possible_action_2.effect_likelihoods[0].attribute %>><br>
 

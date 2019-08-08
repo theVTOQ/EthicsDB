@@ -27,5 +27,9 @@ class ApplicationController < Sinatra::Base
         |ethical_argument| [ethical_argument.topic, ethical_argument]
       }.to_h.sort_by {|topic, ethical_argument| ethical_argument.subscribers.count }
     end
+
+    def rank_morality_of_possible_actions(possible_actions, imperative_rankings)
+
+    end
   end
 end

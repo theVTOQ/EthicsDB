@@ -92,6 +92,9 @@ class EthicalArgumentsController < ApplicationController
       effect_likelihood_1 = EffectLikelihood.create(params[effect_likelihoods][0])
       effect_likelihood_2 = EffectLikelihood.create(params[effect_likelihoods][1])
 
+      effect_likelihood_1.affected_party = (params[effect_likelihood_1_affected_party] == 1) ? concerned_party_1 : concerned_party_2
+      effect_likelihood_2.affected_party = (params[effect_likelihood_2_affected_party] == 1) ? concerned_party_1 : concerned_party_2
+
       possible_action_1.effect_likelihoods << effect_likelihood_1
       possible_action_2.effect_likelihoods << effect_likelihood_2
 
@@ -146,6 +149,9 @@ class EthicalArgumentsController < ApplicationController
 
       effect_likelihood_1.update(params[effect_likelihoods][0])
       effect_likelihood_2.update(params[effect_likelihoods][1])
+
+      effect_likelihood_1.affected_party = (params[effect_likelihood_1_affected_party] == 1) ? concerned_party_1 : concerned_party_2
+      effect_likelihood_2.affected_party = (params[effect_likelihood_2_affected_party] == 1) ? concerned_party_1 : concerned_party_2
 
       redirect "/ethical_arguments/#{ethical_argument.id}"
     else

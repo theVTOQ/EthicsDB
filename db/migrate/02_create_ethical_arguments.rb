@@ -33,6 +33,7 @@ class CreateEthicalArguments < ActiveRecord::Migration
       t.string :operation
       t.decimal :likelihood
       t.references :possible_action, index: true, foreign_key: true
+      t.references :concerned_party, index: true, foreign_key: true
     end
   end
 end
