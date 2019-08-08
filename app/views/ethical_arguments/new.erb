@@ -1,7 +1,83 @@
-<h1>Create a new Ethical Argumentt</h1>
-<form action='/ethical_arguments' method="post">
-    <label for="content">Content:</label>
-    <input type="text" id="content" name="tweet[content]"><br>
+<h1>Create a new Ethical Argument</h1>
+<form action='/ethical_arguments/authored' method="post">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="ethical_argument[title]"><br>
 
-    <input type="submit" id="submit" name="submit" value="submit">
+  <label for="topic">Topic:</label>
+  <input type="text" id="topic" name="ethical_argument[topic]"><br>
+
+  <label for="summary">Summary:</label>
+  <input type="text" id="summary" name="ethical_argument[summary]"><br>
+
+  <!-- Concerned Party 1 -->
+  <h3>Create Concerned Party 1:</h3>
+  <label for="concerned_party_1_identifier">Identifier:</label>
+  <input type="text" id="concerned_party_1_identifier" name="concerned_partys[][identifier]"><br>
+
+  <label for="circumstance_1_context">Circumstance:</label>
+  <input type="text" id="circumstance_1_context" name="circumstances[][context]"><br>
+
+  <!-- Concerned Party 1: Imperative Ranking -->
+  <h4>Create Imperative Ranking for Party 1:</h4>
+  <label for="imperative_ranking_1_attribute">Attribute:</label>
+  <input type="text" id="imperative_ranking_1_attribute" name="imperative_rankings[][attribute]"><br>
+
+  <label for="imperative_ranking_1_operation">Operation:</label>
+  <input type="text" id="imperative_ranking_1_operation" name="imperative_rankings[][operation]"><br>
+
+  <label for="imperative_ranking_1_importance_ranking">Importance Ranking:</label><br>
+  <input type="number" id="imperative_ranking_1_importance_ranking" name="imperative_rankings[][importance_ranking]" min="1" max="2"><br>
+
+  <!-- Concerned Party 2 -->
+  <h3>Create Concerned Party 2:</h3>
+  <label for="concerned_party_2_identifier">Identifier:</label>
+  <input type="text" id="concerned_party_2_identifier" name="concerned_partys[][identifier]"><br>
+
+  <label for="circumstance_2_context">Circumstance:</label>
+  <input type="text" id="circumstance_2_context" name="circumstances[][context]"><br>
+
+  <!-- Concerned Party 2: Imperative Ranking -->
+  <h4>Create Imperative Ranking for Party 2:</h4>
+  <label for="imperative_ranking_2_attribute">Attribute:</label>
+  <input type="text" id="imperative_ranking_2_attribute" name="imperative_rankings[][attribute]"><br>
+
+  <label for="imperative_ranking_2_operation">Operation:</label>
+  <input type="text" id="imperative_ranking_2_operation" name="imperative_rankings[][operation]"><br>
+
+  <label for="imperative_ranking_2_importance_ranking">Importance Ranking:</label><br>
+  <input type="number" id="imperative_ranking_2_importance_ranking" name="imperative_rankings[][importance_ranking]" min="1" max="2"><br>
+
+  <!-- Possible Action 1 -->
+  <h3>Possible Action 1:</h3>
+  <label for="possible_action_1_description">Description:</label>
+  <input type="text" id="concerned_party_1_description" name="possible_actions[][description]"><br>
+
+  <!-- Possible Action 1: Effect Likelihood -->
+  <h4>Effect Likelihood:</h4>
+  <label for="effect_likelihood_1_attribute">Attribute:</label>
+  <input type="text" id="effect_likelihood_1_attribute" name="possible_actions[][attribute]"><br>
+
+  <label for="effect_likelihood_1_operation">Operation:</label>
+  <input type="text" id="effect_likelihood_1_operation" name="possible_actions[][operation]"><br>
+
+  <label for="effect_likelihood_1_likelihood">Likelihood:</label>
+  <input type="text" id="effect_likelihood_1_likelihood" name="possible_actions[][likelihood]"><br>
+
+  <!-- Possible Action 2 -->
+  <h3>Possible Action 2:</h3>
+  <label for="possible_action_2_description">Description:</label>
+  <input type="text" id="concerned_party_2_description" name="possible_actions[][description]"><br>
+
+  <!-- Possible Action 2: Effect Likelihood -->
+  <h4>Effect Likelihood:</h4>
+  <label for="effect_likelihood_2_attribute">Attribute:</label>
+  <input type="text" id="effect_likelihood_2_attribute" name="possible_actions[][attribute]"><br>
+
+  <label for="effect_likelihood_2_operation">Operation:</label>
+  <input type="text" id="effect_likelihood_2_operation" name="possible_actions[][operation]"><br>
+
+  <label for="effect_likelihood_2_likelihood">Likelihood:</label>
+  <input type="text" id="effect_likelihood_2_likelihood" name="possible_actions[][likelihood]"><br>
+
+  <input type="submit" id="submit" name="submit" value="submit">
 </form>
