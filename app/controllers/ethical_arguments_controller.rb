@@ -69,7 +69,7 @@ class EthicalArgumentsController < ApplicationController
   end
 
   post '/ethical_arguments/authored' do
-    if !params["tweet"]["content"].empty?
+    if !params["ethical_argument"].empty?
       #in future, use find_or_create_by ?
       concerned_party_1 = ConcernedParty.create(params["concerned_partys"][0])
       concerned_party_2 = ConcernedParty.create(params["concerned_partys"][1])
@@ -111,23 +111,57 @@ class EthicalArgumentsController < ApplicationController
   end
 
   patch '/ethical_arguments/:id' do
-    if !params["tweet"]["content"].empty?
-      Tweet.find(params[:id]).update(params["tweet"])
-      redirect "/tweets/#{params[:id]}"
+    if !params["ethical_argument"].empty?
+      #in future, use find_or_create_by ?
+      ethical_argument = EthicalArgument.find(params[:id])
+      ethical_argument.update(params["ethical_argument"])
+
+      concerned_party_1 = ethical_argument.concerned_partys[0]
+      concerned_party_2 = ethical_argument.concerned_partys[1]
+
+      concerned_party_1.update(params["concerned_partys"][0])
+      concerned_party_2.update(params["concerned_partys"][1])
+
+      circumstance_1 = concerned_party_1[0]
+      circumstance_2 = concerned_party_2[0]
+
+      circumstance_1.update(params["circumstances"][0])
+      circumstance_2.update(params["circumstances"][1])
+
+      #in future, be able to add circumstances, concerned parties and so on when editing ethical argument
+      imperative_ranking_1 = concerned_party_1.imperative_rankings[0]
+      imperative_ranking_2 = concerned_party_1.imperative_rankings[0]
+
+      imperative_ranking_1.update(params[imperative_rankings][0])
+      imperative_ranking_2.update(params[imperative_rankings][1])
+
+      possible_action_1 = ethical_argument.possible_actions[0]
+      possible_action_2 = ethical_argument.possible_actions[1]
+
+      possible_action_1.update(params[possible_actions][0])
+      possible_action_2.update(params[possible_actions][1])
+
+      effect_likelihood_1 = possible_action_1.effect_likelihoods[0]
+      effect_likelihood_2 = possible_action_2.effect_likelihoods[0]
+
+      effect_likelihood_1.update(params[effect_likelihoods][0])
+      effect_likelihood_2.update(params[effect_likelihoods][1])
+
+      redirect "/ethical_arguments/#{ethical_argument.id}"
     else
-      redirect "/tweets/#{params[:id]}/edit"
+      redirect "/ethical_arguments/authored"
     end
   end
 
-  delete '/tweets/:id' do
+  delete '/ethical_arguments/:id' do
     if logged_in?
-      tweet = Tweet.find(params[:id])
+      ethical_argument = EthicalArgument.find(params[:id])
 
-      if current_user.tweets.include?(tweet)
-        tweet.destroy
-        redirect '/tweets'
+      if current_user.authored_ethical_arguments.include?(ethical_argument)
+        ethical_argument.destroy
+        redirect '/authored_ethical_arguments'
       else
-        redirect '/tweets'
+        redirect '/authored_ethical_arguments'
       end
     else
       redirect '/login'
