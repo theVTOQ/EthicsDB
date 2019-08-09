@@ -1,13 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'sinatra', '>= 2.0.2'
-gem 'activerecord', '>=4.2.7.1', :require => 'active_record'
+gem 'sinatra'
+gem 'activerecord', '4.2.5', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'rake'
 gem 'require_all'
-gem 'sqlite3'
+gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
+gem "rerun", git: "https://github.com/alexch/rerun.git"
+gem 'wdm'
 gem 'thin'
-gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
