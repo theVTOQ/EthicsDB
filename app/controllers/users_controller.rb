@@ -10,11 +10,11 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    if logged_in?
-      redirect '/ethical_arguments'
-    else
+    #if logged_in?
+      #redirect '/ethical_arguments'
+    #else
       erb :"/users/login"
-    end
+    #end
   end
 
   get '/logout' do

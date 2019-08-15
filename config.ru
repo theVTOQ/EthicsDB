@@ -7,5 +7,5 @@ end
 use Rack::MethodOverride
 use EthicalArgumentsController
 use UsersController
-#run ApplicationController
-ApplicationController.run!
+run ApplicationController
+#ApplicationController.run!

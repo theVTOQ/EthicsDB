@@ -7,7 +7,7 @@ gem 'rake'
 gem 'require_all'
 gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
 gem "rerun", git: "https://github.com/alexch/rerun.git"
-gem 'wdm'
+gem 'shotgun'
 gem 'thin'
 gem 'pry'
 gem 'bcrypt'
