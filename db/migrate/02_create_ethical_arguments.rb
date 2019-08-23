@@ -9,6 +9,7 @@ class CreateEthicalArguments < ActiveRecord::Migration
 
     create_table :concerned_partys do |t|
       t.string :identifier
+      t.references :ethical_argument, index: true, foreign_key: true
     end
 
     create_table :circumstances do |t|

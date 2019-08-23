@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 7) do
 
   create_table "action_ethical_arguments", force: :cascade do |t|
     t.integer "possible_action_id"
@@ -28,12 +28,15 @@ ActiveRecord::Schema.define(version: 4) do
 
   add_index "circumstances", ["concerned_party_id"], name: "index_circumstances_on_concerned_party_id"
 
-  create_table "concerned_partys", force: :cascade do |t|
-    t.string "identifier"
+  create_table "concerned_parties", force: :cascade do |t|
+    t.string  "identifier"
+    t.integer "ethical_argument_id"
   end
 
+  add_index "concerned_parties", ["ethical_argument_id"], name: "index_concerned_parties_on_ethical_argument_id"
+
   create_table "effect_likelihoods", force: :cascade do |t|
-    t.string  "attribute"
+    t.string  "characteristic"
     t.string  "operation"
     t.decimal "likelihood"
     t.integer "possible_action_id"
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 4) do
   end
 
   create_table "imperative_rankings", force: :cascade do |t|
-    t.string  "attribute"
+    t.string  "characteristic"
     t.string  "operation"
     t.integer "importance_ranking"
     t.integer "concerned_party_id"

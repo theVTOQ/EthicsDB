@@ -85,8 +85,9 @@ class EthicalArgumentsController < ApplicationController
   post '/ethical_arguments/authored' do
     if !params["ethical_argument"].empty?
       #in future, use find_or_create_by ?
-      concerned_party_1 = ConcernedParty.create(params["concerned_partys"][0])
-      concerned_party_2 = ConcernedParty.create(params["concerned_partys"][1])
+      
+      concerned_party_1 = ConcernedParty.create(params["concerned_parties"][0])
+      concerned_party_2 = ConcernedParty.create(params["concerned_parties"][1])
 
       circumstance_1 = Circumstance.create(params["circumstances"][0])
       circumstance_2 = Circumstance.create(params["circumstances"][1])
@@ -94,33 +95,37 @@ class EthicalArgumentsController < ApplicationController
       concerned_party_1.circumstances << circumstance_1
       concerned_party_2.circumstances << circumstance_2
 
-      imperative_ranking_1 = ImperativeRanking.create(params[imperative_rankings][0])
-      imperative_ranking_2 = ImperativeRanking.create(params[imperative_rankings][1])
+      imperative_ranking_1 = ImperativeRanking.create(params["imperative_rankings"][0])
+      imperative_ranking_2 = ImperativeRanking.create(params["imperative_rankings"][1])
 
       concerned_party_1.imperative_rankings << imperative_ranking_1
       concerned_party_2.imperative_rankings << imperative_ranking_2
 
-      possible_action_1 = PossibleAction.create(params[possible_actions][0])
-      possible_action_2 = PossibleAction.create(params[possible_actions][1])
+      possible_action_1 = PossibleAction.create(params["possible_actions"][0])
+      possible_action_2 = PossibleAction.create(params["possible_actions"][1])
 
-      effect_likelihood_1 = EffectLikelihood.create(params[effect_likelihoods][0])
-      effect_likelihood_2 = EffectLikelihood.create(params[effect_likelihoods][1])
+      effect_likelihood_1 = EffectLikelihood.create(params["effect_likelihoods"][0])
+      effect_likelihood_2 = EffectLikelihood.create(params["effect_likelihoods"][1])
 
-      effect_likelihood_1.affected_party = (params[effect_likelihood_1_affected_party] == 1) ? concerned_party_1 : concerned_party_2
-      effect_likelihood_2.affected_party = (params[effect_likelihood_2_affected_party] == 1) ? concerned_party_1 : concerned_party_2
+      affected_party_1 = (params["effect_likelihood_1_affected_party"] == 1) ? concerned_party_1 : concerned_party_2
+      affected_party_1.effect_likelihoods << effect_likelihood_1
+
+      affected_party_2 = (params["effect_likelihood_2_affected_party"] == 1) ? concerned_party_1 : concerned_party_2
+      affected_party_2.effect_likelihoods << effect_likelihood_2
 
       possible_action_1.effect_likelihoods << effect_likelihood_1
       possible_action_2.effect_likelihoods << effect_likelihood_2
 
       ethical_argument = EthicalArgument.create(params["ethical_argument"])
-      ethical_argument.author_id = current_user.id
-
+      
       ethical_argument.concerned_partys << concerned_party_1
       ethical_argument.concerned_partys << concerned_party_2
 
       ethical_argument.possible_actions << possible_action_1
       ethical_argument.possible_actions << possible_action_2
 
+      current_user.authored_ethical_arguments << ethical_argument
+      
       redirect "/ethical_arguments/#{ethical_argument.id}"
     else
       redirect "/ethical_arguments/authored"

@@ -12,15 +12,15 @@
   <!-- Concerned Party 1 -->
   <h3>Create Concerned Party 1:</h3>
   <label for="concerned_party_1_identifier">Identifier:</label>
-  <input type="text" id="concerned_party_1_identifier" name="concerned_partys[][identifier]"><br>
+  <input type="text" id="concerned_party_1_identifier" name="concerned_parties[][identifier]"><br>
 
   <label for="circumstance_1_context">Circumstance:</label>
   <input type="text" id="circumstance_1_context" name="circumstances[][context]"><br>
 
   <!-- Concerned Party 1: Imperative Ranking -->
   <h4>Create Imperative Ranking for Party 1:</h4>
-  <label for="imperative_ranking_1_attribute">Attribute:</label>
-  <input type="text" id="imperative_ranking_1_attribute" name="imperative_rankings[][attribute]"><br>
+  <label for="imperative_ranking_1_characteristic">Characteristic:</label>
+  <input type="text" id="imperative_ranking_1_characteristic" name="imperative_rankings[][characteristic]"><br>
 
   <label for="imperative_ranking_1_operation">Operation:</label>
   <input type="text" id="imperative_ranking_1_operation" name="imperative_rankings[][operation]"><br>
@@ -31,15 +31,15 @@
   <!-- Concerned Party 2 -->
   <h3>Create Concerned Party 2:</h3>
   <label for="concerned_party_2_identifier">Identifier:</label>
-  <input type="text" id="concerned_party_2_identifier" name="concerned_partys[][identifier]"><br>
+  <input type="text" id="concerned_party_2_identifier" name="concerned_parties[][identifier]"><br>
 
   <label for="circumstance_2_context">Circumstance:</label>
   <input type="text" id="circumstance_2_context" name="circumstances[][context]"><br>
 
   <!-- Concerned Party 2: Imperative Ranking -->
   <h4>Create Imperative Ranking for Party 2:</h4>
-  <label for="imperative_ranking_2_attribute">Attribute:</label>
-  <input type="text" id="imperative_ranking_2_attribute" name="imperative_rankings[][attribute]"><br>
+  <label for="imperative_ranking_2_characteristic">Characteristic:</label>
+  <input type="text" id="imperative_ranking_2_characteristic" name="imperative_rankings[][characteristic]"><br>
 
   <label for="imperative_ranking_2_operation">Operation:</label>
   <input type="text" id="imperative_ranking_2_operation" name="imperative_rankings[][operation]"><br>
@@ -53,19 +53,21 @@
   <input type="text" id="concerned_party_1_description" name="possible_actions[][description]"><br>
 
   <!-- Possible Action 1: Effect Likelihood -->
-  <h4>Effect Likelihood:</h4>
+  <h4>Effect Likelihood:</h4><br>
   <label for="affected_party_1">Affected Party:</label>
+  <label for="effect_likelihood_1_affected_party_1">1</label>
   <input type="radio" id="effect_likelihood_1_affected_party_1" name="effect_likelihood_1_affected_party" value="1"><br>
+  <label for="effect_likelihood_1_affected_party_2">2</label>
   <input type="radio" id="effect_likelihood_1_affected_party_2" name="effect_likelihood_1_affected_party" value="2"><br>
 
-  <label for="effect_likelihood_1_attribute">Attribute:</label>
-  <input type="text" id="effect_likelihood_1_attribute" name="possible_actions[][attribute]"><br>
+  <label for="effect_likelihood_1_characteristic">characteristic:</label>
+  <input type="text" id="effect_likelihood_1_characteristic" name="effect_likelihoods[][characteristic]"><br>
 
   <label for="effect_likelihood_1_operation">Operation:</label>
-  <input type="text" id="effect_likelihood_1_operation" name="possible_actions[][operation]"><br>
+  <input type="text" id="effect_likelihood_1_operation" name="effect_likelihoods[][operation]"><br>
 
   <label for="effect_likelihood_1_likelihood">Likelihood:</label>
-  <input type="text" id="effect_likelihood_1_likelihood" name="possible_actions[][likelihood]"><br>
+  <input type="text" id="effect_likelihood_1_likelihood" name="effect_likelihoods[][likelihood]"><br>
 
   <!-- Possible Action 2 -->
   <h3>Possible Action 2:</h3>
@@ -78,14 +80,14 @@
   <input type="radio" id="effect_likelihood_2_affected_party_1" name="effect_likelihood_2_affected_party" value="1"><br>
   <input type="radio" id="effect_likelihood_2_affected_party_2" name="effect_likelihood_2_affected_party" value="2"><br>
 
-  <label for="effect_likelihood_2_attribute">Attribute:</label>
-  <input type="text" id="effect_likelihood_2_attribute" name="possible_actions[][attribute]"><br>
+  <label for="effect_likelihood_2_characteristic">characteristic:</label>
+  <input type="text" id="effect_likelihood_2_characteristic" name="effect_likelihoods[][characteristic]"><br>
 
   <label for="effect_likelihood_2_operation">Operation:</label>
-  <input type="text" id="effect_likelihood_2_operation" name="possible_actions[][operation]"><br>
+  <input type="text" id="effect_likelihood_2_operation" name="effect_likelihoods[][operation]"><br>
 
   <label for="effect_likelihood_2_likelihood">Likelihood:</label>
-  <input type="text" id="effect_likelihood_2_likelihood" name="possible_actions[][likelihood]"><br>
+  <input type="text" id="effect_likelihood_2_likelihood" name="effect_likelihoods[][likelihood]"><br>
 
   <input type="submit" id="submit" name="submit" value="submit">
 </form>
