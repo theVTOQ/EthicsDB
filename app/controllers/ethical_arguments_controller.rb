@@ -14,9 +14,9 @@ class EthicalArgumentsController < ApplicationController
   get '/ethical_arguments/authored' do
     if logged_in?
       @user = current_user
-      @sorted_and_ranked_args = sort_and_rank(@user.authored_ethical_arguments)
+      @sorted_and_ranked_contributions = sort_and_rank(@user.authored_ethical_arguments)
 
-      erb :"/ethical_arguments/new"
+      erb :"/ethical_arguments/authored"
     else
       redirect '/login'
     end
@@ -25,7 +25,9 @@ class EthicalArgumentsController < ApplicationController
   get '/ethical_arguments/subscribed' do
     if logged_in?
       @user = current_user
-      @sorted_and_ranked_args = sort_and_rank(@user.subscribed_ethical_arguments)
+      sorted_and_ranked_args = sort_and_rank(@user.subscribed_ethical_arguments)
+      @authored = sort_and_rank(Contribution.where(author_id: @user.id, is_edit = false))
+      @edited = sort_and_rank(Contribution.where(author_id: @user.id, is_edit = true))
 
       erb :"/ethical_arguments/new"
     else

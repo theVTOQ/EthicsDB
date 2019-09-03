@@ -1,5 +1,8 @@
 class EthicalArgument < ActiveRecord::Base
-  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+  has_many :contributions
+  has_many :authors, through: :contributions, class_name: 'User', foreign_key: 'author_id'
+  has_many :authorized_contributions
+  has_many :authorized_editors, through: :authorized_contributions, class_name: 'User', foreign_key: 'authorized_editor_id'
   has_many :subscriptions
   has_many :subscribers, through: :subscriptions, class_name: 'User', foreign_key: 'subscriber_id'
   has_many :concerned_partys
