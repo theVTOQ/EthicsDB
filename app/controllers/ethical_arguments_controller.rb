@@ -174,6 +174,8 @@ class EthicalArgumentsController < ApplicationController
       effect_likelihood_1.affected_party = (params[effect_likelihood_1_affected_party] == 1) ? concerned_party_1 : concerned_party_2
       effect_likelihood_2.affected_party = (params[effect_likelihood_2_affected_party] == 1) ? concerned_party_1 : concerned_party_2
 
+      ethical_argument.editors << current_user if !ethical_argument.editors.include?(user)
+      
       redirect "/ethical_arguments/#{ethical_argument.id}"
     else
       redirect "/ethical_arguments/authored"

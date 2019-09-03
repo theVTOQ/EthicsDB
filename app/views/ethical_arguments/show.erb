@@ -72,6 +72,10 @@
   </form>
 <% end %>
 
+<% if @ethical_argument.authorized_editors.include?(current_user) %>
+  <a href="/ethical_arguments/<%= @ethical_argument.id %>/edit"> Edit Ethical Argument</a>
+<% end %>
+
 
 <!-- interactors -->
 <h3>Authors:</h3>
