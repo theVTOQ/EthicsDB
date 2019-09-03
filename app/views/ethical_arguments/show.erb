@@ -51,8 +51,15 @@
 <% end %>
 </ol>
 
-<% if @ethical_argument.author_id == session[:user_id] %>
+<!-- interaction options: -->
+<% if @ethical_argument.authors.include?(current_user) %>
   <a href="/ethical_arguments/<%= @ethical_argument.id %>/edit">Edit Ethical Argument</a>
+  
+  <form action="/ethical_arguments/<%= @ethical_argument.id %>" method="POST">
+    <input type="hidden" id="hidden" name="_method" value="delete">
+
+    <input type="submit" id="submit" value="Delete Ethical Argument">
+  </form>
 <% elsif current_user.subscribed_ethical_arguments.include?(@ethical_argument) %>
   <p>You subscribe to this ethical argument.</p>
 
@@ -64,8 +71,32 @@
     <input type="submit" id="subscribe" name="subscribe" value="Subscribe">
   </form>
 <% end %>
-<form action="/ethical_arguments/<%= @ethical_argument.id %>" method="POST">
-  <input type="hidden" id="hidden" name="_method" value="delete">
 
-  <input type="submit" id="submit" value="Delete Ethical Argument">
-</form>
+
+<!-- interactors -->
+<h3>Authors:</h3>
+<ul>
+<% @ethical_argument.authors.each do |author| %>
+  <li>
+    <%= author.username %>
+  </li>
+<% end %>
+</ul>
+
+<h3>Editors:</h3>
+<ul>
+<% @ethical_argument.editors.each do |editor| %>
+  <li>
+    <%= editor.username %>
+  </li>
+<% end %>
+</ul>
+
+<h3>Subscribers:</h3>
+<ul>
+<% @ethical_argument.subscribers.each do |subscriber| %>
+  <li>
+    <%= subscriber.username %>
+  </li>
+<% end %>
+</ul>
