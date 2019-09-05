@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 9) do
+ActiveRecord::Schema.define(version: 10) do
 
   create_table "action_ethical_arguments", force: :cascade do |t|
     t.integer "possible_action_id"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 9) do
 
   add_index "circumstances", ["concerned_party_id"], name: "index_circumstances_on_concerned_party_id"
 
+  create_table "compositions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "ethical_argument_id"
+  end
+
+  add_index "compositions", ["ethical_argument_id"], name: "index_compositions_on_ethical_argument_id"
+  add_index "compositions", ["user_id"], name: "index_compositions_on_user_id"
+
   create_table "concerned_parties", force: :cascade do |t|
     t.string  "identifier"
     t.integer "ethical_argument_id"
@@ -43,14 +51,10 @@ ActiveRecord::Schema.define(version: 9) do
 
   add_index "concerned_parties", ["ethical_argument_id"], name: "index_concerned_parties_on_ethical_argument_id"
 
-  create_table "contributions", force: :cascade do |t|
+  create_table "edits", force: :cascade do |t|
     t.integer "user_id"
     t.integer "ethical_argument_id"
-    t.boolean "is_edit"
   end
-
-  add_index "contributions", ["ethical_argument_id"], name: "index_contributions_on_ethical_argument_id"
-  add_index "contributions", ["user_id"], name: "index_contributions_on_user_id"
 
   create_table "effect_likelihoods", force: :cascade do |t|
     t.string  "characteristic"

@@ -26,8 +26,8 @@ class EthicalArgumentsController < ApplicationController
     if logged_in?
       @user = current_user
       sorted_and_ranked_args = sort_and_rank(@user.subscribed_ethical_arguments)
-      @authored = sort_and_rank(Contribution.where(user_id: @user.id, is_edit: false))
-      @edited = sort_and_rank(Contribution.where(user_id: @user.id, is_edit: true))
+      @authored = sort_and_rank(@user.compositions)
+      @edited = sort_and_rank(@user.edits)
 
       erb :"/ethical_arguments/new"
     else
