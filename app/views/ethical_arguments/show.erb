@@ -36,14 +36,22 @@
 <ol>
 <% @ethical_argument.possible_actions.sort_by{|action| action.morality_ranking}.each do |action| %>
   <li>
-    <p><%= action.description %></p><br>
+    <p><%= action.description %></p>
     <p>Likely Effects:</p>
     <ol>
     <% action.effect_likelihoods.each do |effect_likelihood| %>
-      <li>
-        <p>Attribute: <%= effect_likelihood.characteristic %></p>
+      <li>  
+        <p>Characteristic: <%= effect_likelihood.characteristic %></p>
         <p>Operation: <%= effect_likelihood.operation %></p>
         <p>Likelihood: <%= effect_likelihood.likelihood * 100 %>%</p>
+        <p>Affected Party: <%= effect_likelihood.affected_party.identifier %></p>
+        <!--
+        <p>
+        Plain english: This action is <%= effect_likelihood.likelihood * 100 %> likely to 
+        likely to <%= effect_likelihood.operation  %> the <%= effect_likelihood.characteristic %> 
+        of the <%= effect_likelihood.affected_party.identifier %>. 
+        </p>
+        -->
       </li>
     <% end %>
     </ol>

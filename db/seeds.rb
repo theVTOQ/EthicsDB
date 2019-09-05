@@ -12,11 +12,11 @@ imperative_ranking_2 = ImperativeRanking.create(characteristic: "happiness", con
 concerned_party_2.imperative_rankings << imperative_ranking_2
 
 possible_action_1 = PossibleAction.create(description: "Party 1 uses drugs")
-effect_likelihood_1 = EffectLikelihood.create(characteristic: "happiness", operation: "increase", likelihood: 0.8)
+effect_likelihood_1 = EffectLikelihood.create(characteristic: "happiness", operation: "increase", likelihood: 0.8, concerned_party: concerned_party_1)
 possible_action_1.effect_likelihoods << effect_likelihood_1
 
 possible_action_2 = PossibleAction.create(description: "Party 1 does not use drugs")
-effect_likelihood_2 = EffectLikelihood.create(characteristic: "health", operation: "maximize", likelihood: 0.8)
+effect_likelihood_2 = EffectLikelihood.create(characteristic: "health", operation: "maximize", likelihood: 0.8, concerned_party: concerned_party_2)
 possible_action_2.effect_likelihoods << effect_likelihood_2
 
 user_1.authored_ethical_arguments << EthicalArgument.create(
