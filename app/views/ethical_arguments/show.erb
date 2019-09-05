@@ -26,7 +26,7 @@
 <ol>
 <% @ethical_argument.imperative_rankings.each do |ranking| %>
   <li>
-    <p>One must <%= ranking.operation %> the <%= ranking.attribute %> of <%= ranking.concerned_party.identifier %></p>
+    <p>One must <%= ranking.operation %> the <%= ranking.characteristic %> of <%= ranking.concerned_party.identifier %></p>
   </li>
 <% end %>
 </ol>
@@ -41,7 +41,7 @@
     <ol>
     <% action.effect_likelihoods.each do |effect_likelihood| %>
       <li>
-        <p>Attribute: <%= effect_likelihood.attribute %></p>
+        <p>Attribute: <%= effect_likelihood.characteristic %></p>
         <p>Operation: <%= effect_likelihood.operation %></p>
         <p>Likelihood: <%= effect_likelihood.likelihood * 100 %>%</p>
       </li>

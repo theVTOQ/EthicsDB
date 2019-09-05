@@ -1,8 +1,8 @@
 class CreateSubscriptions < ActiveRecord::Migration
   def change
     create_table :subscriptions do |t|
-      t.references :user, index: true, foreign_key: true
-      t.references :ethical_argument, index: true, foreign_key: true
+      t.integer :subscriber_id
+      t.integer :subscribed_ethical_argument_id
     end
   end
 end

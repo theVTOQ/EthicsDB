@@ -26,8 +26,8 @@ class EthicalArgumentsController < ApplicationController
     if logged_in?
       @user = current_user
       sorted_and_ranked_args = sort_and_rank(@user.subscribed_ethical_arguments)
-      @authored = sort_and_rank(Contribution.where(author_id: @user.id, is_edit = false))
-      @edited = sort_and_rank(Contribution.where(author_id: @user.id, is_edit = true))
+      @authored = sort_and_rank(Contribution.where(user_id: @user.id, is_edit: false))
+      @edited = sort_and_rank(Contribution.where(user_id: @user.id, is_edit: true))
 
       erb :"/ethical_arguments/new"
     else
@@ -175,7 +175,7 @@ class EthicalArgumentsController < ApplicationController
       effect_likelihood_2.affected_party = (params[effect_likelihood_2_affected_party] == 1) ? concerned_party_1 : concerned_party_2
 
       ethical_argument.editors << current_user if !ethical_argument.editors.include?(user)
-      
+
       redirect "/ethical_arguments/#{ethical_argument.id}"
     else
       redirect "/ethical_arguments/authored"

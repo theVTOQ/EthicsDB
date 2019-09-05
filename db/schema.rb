@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 7) do
+ActiveRecord::Schema.define(version: 9) do
 
   create_table "action_ethical_arguments", force: :cascade do |t|
     t.integer "possible_action_id"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 7) do
 
   add_index "action_ethical_arguments", ["ethical_argument_id"], name: "index_action_ethical_arguments_on_ethical_argument_id"
   add_index "action_ethical_arguments", ["possible_action_id"], name: "index_action_ethical_arguments_on_possible_action_id"
+
+  create_table "authorized_contributions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "ethical_argument_id"
+  end
+
+  add_index "authorized_contributions", ["ethical_argument_id"], name: "index_authorized_contributions_on_ethical_argument_id"
+  add_index "authorized_contributions", ["user_id"], name: "index_authorized_contributions_on_user_id"
 
   create_table "circumstances", force: :cascade do |t|
     t.string  "context"
@@ -34,6 +42,15 @@ ActiveRecord::Schema.define(version: 7) do
   end
 
   add_index "concerned_parties", ["ethical_argument_id"], name: "index_concerned_parties_on_ethical_argument_id"
+
+  create_table "contributions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "ethical_argument_id"
+    t.boolean "is_edit"
+  end
+
+  add_index "contributions", ["ethical_argument_id"], name: "index_contributions_on_ethical_argument_id"
+  add_index "contributions", ["user_id"], name: "index_contributions_on_user_id"
 
   create_table "effect_likelihoods", force: :cascade do |t|
     t.string  "characteristic"
@@ -71,9 +88,6 @@ ActiveRecord::Schema.define(version: 7) do
     t.integer "user_id"
     t.integer "ethical_argument_id"
   end
-
-  add_index "subscriptions", ["ethical_argument_id"], name: "index_subscriptions_on_ethical_argument_id"
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string "username"
