@@ -32,6 +32,13 @@ class UsersController < ApplicationController
     erb :"/users/show"
   end
 
+  get '/users/:slug/edit' do
+    @user = User.find_by_slug(params[:slug])
+
+    erb :"/users/edit"
+  end
+
+
   post "/signup" do
     #your code here
     username = params[:username]
@@ -39,7 +46,7 @@ class UsersController < ApplicationController
     password = params[:password]
 
     #binding.pry
-    if username != "" && email != "" && password != ""
+    if username != "" && email != "" && password != "" && !username_taken?(username) && !email_taken?(email)
       user = User.create(email: email, username: username, password: password)
       session[:user_id] = user.id
       redirect '/ethical_arguments'
@@ -58,4 +65,34 @@ class UsersController < ApplicationController
       redirect '/signup'
     end
   end
+
+  patch "/username" do
+    if logged_in?
+      username = params[:username]
+      
+      if !username_taken?(username)
+        current_user.update(username: username)
+      end
+
+      redirect "/users/#{current_user.slugify}/edit"
+    else
+      redirect '/login'
+    end
+  end
+
+  patch "/email" do
+    if logged_in?
+      email = params[:email]
+      
+      if !email_taken?(email)
+        current_user.update(email: email)
+      end
+
+      redirect "/users/#{current_user.slugify}/edit"
+    else
+      redirect '/login'
+    end
+  end
+
+  #in future, patch pasword too
 end

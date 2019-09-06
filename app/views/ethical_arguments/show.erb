@@ -1,5 +1,3 @@
-<h1>The Ethical Arguments You Subscribe To:</h1>
-
 <p>Click <a href="/authored">here</a> to view the ethical arguments you've authored.</p>
 
 <h2><%= @ethical_argument.title %></h2>
@@ -26,7 +24,7 @@
 <ol>
 <% @ethical_argument.imperative_rankings.each do |ranking| %>
   <li>
-    <p>One must <%= ranking.operation %> the <%= ranking.characteristic %> of <%= ranking.concerned_party.identifier %></p>
+    <p>One must <%= ranking.operation %> the <%= ranking.characteristic %> of the <%= ranking.concerned_party.identifier %></p>
   </li>
 <% end %>
 </ol>
@@ -41,17 +39,17 @@
     <ol>
     <% action.effect_likelihoods.each do |effect_likelihood| %>
       <li>  
+        <!--
         <p>Characteristic: <%= effect_likelihood.characteristic %></p>
         <p>Operation: <%= effect_likelihood.operation %></p>
         <p>Likelihood: <%= effect_likelihood.likelihood * 100 %>%</p>
-        <p>Affected Party: <%= effect_likelihood.affected_party.identifier %></p>
-        <!--
-        <p>
-        Plain english: This action is <%= effect_likelihood.likelihood * 100 %> likely to 
-        likely to <%= effect_likelihood.operation  %> the <%= effect_likelihood.characteristic %> 
-        of the <%= effect_likelihood.affected_party.identifier %>. 
-        </p>
+        <p>Affected Party: <%= effect_likelihood.concerned_party.identifier %></p>
         -->
+        <p>
+        This action is <%= effect_likelihood.likelihood * 100 %>% likely to 
+        likely to <%= effect_likelihood.operation  %> the <%= effect_likelihood.characteristic %> 
+        of the <%= effect_likelihood.concerned_party.identifier %>. 
+        </p>
       </li>
     <% end %>
     </ol>
@@ -60,7 +58,8 @@
 </ol>
 
 <!-- interaction options: -->
-<% if @ethical_argument.authors.include?(current_user) %>
+<p>Validation: <%= @ethical_argument.authors.include?(current_user) %></p>
+<% if @ethical_argument.authors.include?(current_user) %>  
   <a href="/ethical_arguments/<%= @ethical_argument.id %>/edit">Edit Ethical Argument</a>
   
   <form action="/ethical_arguments/<%= @ethical_argument.id %>" method="POST">

@@ -6,11 +6,20 @@
   <body>
 
     <div class="container">
-      <h1>Welcome to EthicsDB!</h1>
+      <h1>
+      <% if logged_in? %>
+        Hi <%= current_user.username %>!
+      <% end %>
+      Welcome to EthicsDB!
+      </h1>
       <h2>Objectifying Subjectivity Since 2019</h2>
     
       <%= yield %>
 
+      <br>
+      <% if logged_in? %>
+        <a href="/users/<%= current_user.slugify %>/edit">Edit Profile</a>
+      <% end %>
     </div>
 
   </body>

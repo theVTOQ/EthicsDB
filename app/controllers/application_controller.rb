@@ -31,5 +31,13 @@ class ApplicationController < Sinatra::Base
     def rank_morality_of_possible_actions(possible_actions, imperative_rankings)
 
     end
+
+    def username_taken?(username)
+      User.all.collect{|user| user.username}.include?(username)
+    end
+
+    def email_taken?(email)
+      User.all.collect{|user| user.email}.include?(email)
+    end
   end
 end
