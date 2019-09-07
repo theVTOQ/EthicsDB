@@ -1,11 +1,11 @@
-<h1>The Ethical Arguments You Have Authored, Ranked by Subscribers and Sorted by Topic:</h1>
+<h1>The Ethical Arguments You Have Edited, Ranked by Subscribers and Sorted by Topic:</h1>
 
 <p>Click <a href="/ethical_arguments/subscribed">here</a> to view the ethical arguments you've subscribed to.</p>
-<p>Click <a href="/ethical_arguments/edited">here</a> to view the ethical arguments you've edited.</p>
+<p>Click <a href="/ethical_arguments/authored">here</a> to view the ethical arguments you've authored.</p>
 
-<h2>Authored Ethical Arguments:</h2>
+<h2>Edited Ethical Arguments:</h2>
 <ul>
-<% @authored.each do |topic, ethical_arguments| %>
+<% @edited.each do |topic, ethical_arguments| %>
   <li>
     <h3>Topic: <%= topic.capitalize %></h3>
     <ol>

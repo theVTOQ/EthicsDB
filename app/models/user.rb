@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
   has_many :subscribed_ethical_arguments, through: :subscriptions
   #has_many :subscribed_ethical_arguments, through: :subscriptions, class_name: 'EthicalArgument', foreign_key: 'subscribed_ethical_argument_id'
   #has_many :subscribed_ethical_arguments, through: :subscriptions, source: :subscriber, source_type: 'User'
+
+  include Slugs
 end

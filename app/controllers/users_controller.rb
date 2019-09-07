@@ -74,7 +74,7 @@ class UsersController < ApplicationController
         current_user.update(username: username)
       end
 
-      redirect "/users/#{current_user.slugify}/edit"
+      redirect "/users/#{current_user.slug}/edit"
     else
       redirect '/login'
     end
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
         current_user.update(email: email)
       end
 
-      redirect "/users/#{current_user.slugify}/edit"
+      redirect "/users/#{current_user.slug}/edit"
     else
       redirect '/login'
     end

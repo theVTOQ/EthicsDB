@@ -15,42 +15,42 @@
   <%= concerned_party_2 = @ethical_argument.concerned_partys[1] %>
 
   <!-- Concerned Party 1 -->
-  <h3>Create Concerned Party 1:</h3>
+  <h3>Concerned Party 1:</h3>
   <label for="concerned_party_1_identifier">Identifier:</label>
-  <input type="text" id="concerned_party_1_identifier" name="concerned_partys[][identifier]" placeholder=<%= concerned_party_1.identifier %>><br>
+  <input type="text" id="concerned_party_1_identifier" name="concerned_partys[][identifier]" placeholder=<%= concerned_party_1.identifier %> value=<%= concerned_party_1.identifier %>><br>
 
   <label for="circumstance_1_context">Circumstance:</label>
-  <input type="text" id="circumstance_1_context" name="circumstances[][context]" placeholder=<%= concerned_party_1.circumstances[0].context %>><br>
+  <input type="text" id="circumstance_1_context" name="circumstances[][context]" placeholder=<%= concerned_party_1.circumstances[0].context %> value=<%= concerned_party_1.circumstances[0].context %>><br>
 
   <!-- Concerned Party 1: Imperative Ranking -->
-  <h4>Create Imperative Ranking for Party 1:</h4>
-  <label for="imperative_ranking_1_attribute">Attribute:</label>
-  <input type="text" id="imperative_ranking_1_attribute" name="imperative_rankings[][attribute]" placeholder=<%= concerned_party_1.imperative_rankings[0].attribute %>><br>
+  <h4>Imperative Ranking for Party 1:</h4>
+  <label for="imperative_ranking_1_characteristic">Characteristic:</label>
+  <input type="text" id="imperative_ranking_1_characteristic" name="imperative_rankings[][characteristic]" placeholder=<%= concerned_party_1.imperative_rankings[0].characteristic %> value=<%= concerned_party_1.imperative_rankings[0].characteristic %>><br>
 
   <label for="imperative_ranking_1_operation">Operation:</label>
-  <input type="text" id="imperative_ranking_1_operation" name="imperative_rankings[][operation]" placeholder=<%= concerned_party_1.imperative_rankings[0].operation %>><br>
+  <input type="text" id="imperative_ranking_1_operation" name="imperative_rankings[][operation]" placeholder=<%= concerned_party_1.imperative_rankings[0].operation %> value=<%= concerned_party_1.imperative_rankings[0].operation %>><br>
 
   <label for="imperative_ranking_1_importance_ranking">Importance Ranking:</label><br>
-  <input type="number" id="imperative_ranking_1_importance_ranking" name="imperative_rankings[][importance_ranking]" min="1" max="2" placeholder=<%= concerned_party_1.imperative_rankings[0].importance_ranking %>><br>
+  <input type="number" id="imperative_ranking_1_importance_ranking" name="imperative_rankings[][importance_ranking]" min="1" max="2" placeholder=<%= concerned_party_1.imperative_rankings[0].importance_ranking %> valueplaceholder=<%= concerned_party_1.imperative_rankings[0].importance_ranking %>><br>
 
   <!-- Concerned Party 2 -->
-  <h3>Create Concerned Party 2:</h3>
+  <h3>Concerned Party 2:</h3>
   <label for="concerned_party_2_identifier">Identifier:</label>
-  <input type="text" id="concerned_party_2_identifier" name="concerned_partys[][identifier]" placeholder=<%= concerned_party_2.identifier %>><br>
+  <input type="text" id="concerned_party_2_identifier" name="concerned_partys[][identifier]" placeholder=<%= concerned_party_2.identifier %> value=<%= concerned_party_2.identifier %>><br>
 
   <label for="circumstance_2_context">Circumstance:</label>
-  <input type="text" id="circumstance_2_context" name="circumstances[][context]" placeholder=<%= concerned_party_2.circumstances[0].context %>><br>
+  <input type="text" id="circumstance_2_context" name="circumstances[][context]" placeholder=<%= concerned_party_2.circumstances[0].context %> value=<%= concerned_party_2.circumstances[0].context %>><br>
 
   <!-- Concerned Party 2: Imperative Ranking -->
-  <h4>Create Imperative Ranking for Party 2:</h4>
-  <label for="imperative_ranking_2_attribute">Attribute:</label>
-  <input type="text" id="imperative_ranking_2_attribute" name="imperative_rankings[][attribute]" placeholder=<%= concerned_party_2.imperative_rankings[0].attribute %>><br>
+  <h4>Imperative Ranking for Party 2:</h4>
+  <label for="imperative_ranking_2_characteristic">characteristic:</label>
+  <input type="text" id="imperative_ranking_2_characteristic" name="imperative_rankings[][characteristic]" placeholder=<%= concerned_party_2.imperative_rankings[0].characteristic %> value=<%= concerned_party_2.imperative_rankings[0].characteristic %>><br>
 
   <label for="imperative_ranking_2_operation">Operation:</label>
-  <input type="text" id="imperative_ranking_2_operation" name="imperative_rankings[][operation]" placeholder=<%= concerned_party_2.imperative_rankings[0].operation %>><br>
+  <input type="text" id="imperative_ranking_2_operation" name="imperative_rankings[][operation]" placeholder=<%= concerned_party_2.imperative_rankings[0].operation %> value=<%= concerned_party_2.imperative_rankings[0].operation %>><br>
 
   <label for="imperative_ranking_2_importance_ranking">Importance Ranking:</label><br>
-  <input type="number" id="imperative_ranking_2_importance_ranking" name="imperative_rankings[][importance_ranking]" min="1" max="2" placeholder=<%= concerned_party_2.imperative_rankings[0].importance_ranking %>><br>
+  <input type="number" id="imperative_ranking_2_importance_ranking" name="imperative_rankings[][importance_ranking]" min="1" max="2" placeholder=<%= concerned_party_2.imperative_rankings[0].importance_ranking %> value=<%= concerned_party_2.imperative_rankings[0].importance_ranking %>><br>
 
   <% possible_action_1 = @ethical_argument.possible_actions[0] %>
   <% possible_action_2 = @ethical_argument.possible_actions[0] %>
@@ -58,42 +58,55 @@
   <!-- Possible Action 1 -->
   <h3>Possible Action 1:</h3>
   <label for="possible_action_1_description">Description:</label>
-  <input type="text" id="concerned_party_1_description" name="possible_actions[][description]" placeholder=<%= possible_action_1.description %>><br>
+  <input type="text" id="concerned_party_1_description" name="possible_actions[][description]" placeholder=<%= possible_action_1.description %> value=<%= possible_action_1.description %>><br>
 
   <!-- Possible Action 1: Effect Likelihood -->
   <h4>Effect Likelihood:</h4>
-  <label for="affected_party_1">Affected Party:</label>
-  <input type="radio" id="effect_likelihood_1_affected_party_1" name="effect_likelihood_1_affected_party" value="1" <%= 'checked' if possible_action_1.effect_likelihoods[0].affected_party == concerned_party_1%>><br>
-  <input type="radio" id="effect_likelihood_1_affected_party_2" name="effect_likelihood_1_affected_party" value="2" <%= 'checked' if possible_action_1.effect_likelihoods[0].affected_party == concerned_party_2%>><br>
+  <label for="concerned_party_1">Affected Party:</label><br>
+  <label for="effect_likelihood_1_concerned_party_1">1</label>
+  <input type="radio" id="effect_likelihood_1_concerned_party_1" name="effect_likelihood_1_concerned_party" value="1" <%= 'checked' if possible_action_1.effect_likelihoods[0].concerned_party == concerned_party_1%>><br>
 
-  <label for="effect_likelihood_1_attribute">Attribute:</label>
-  <input type="text" id="effect_likelihood_1_attribute" name="possible_actions[][attribute]" placeholder=<%= possible_action_1.effect_likelihoods[0].attribute %>><br>
+  <label for="effect_likelihood_1_concerned_party_2">2</label>  
+  <input type="radio" id="effect_likelihood_1_concerned_party_2" name="effect_likelihood_1_concerned_party" value="2" <%= 'checked' if possible_action_1.effect_likelihoods[0].concerned_party == concerned_party_2%>><br>
+
+  <label for="effect_likelihood_1_characteristic">characteristic:</label>
+  <input type="text" id="effect_likelihood_1_characteristic" name="possible_actions[][characteristic]" placeholder=<%= possible_action_1.effect_likelihoods[0].characteristic %> value=<%= possible_action_1.effect_likelihoods[0].characteristic %>><br>
 
   <label for="effect_likelihood_1_operation">Operation:</label>
-  <input type="text" id="effect_likelihood_1_operation" name="possible_actions[][operation]" possible_action_1.effect_likelihoods[0].operation %>><br>
+  <input type="text" id="effect_likelihood_1_operation" name="possible_actions[][operation]" placeholder=<%=possible_action_1.effect_likelihoods[0].operation %> value=<%=possible_action_1.effect_likelihoods[0].operation %>><br>
 
   <label for="effect_likelihood_1_likelihood">Likelihood:</label>
-  <input type="text" id="effect_likelihood_1_likelihood" name="possible_actions[][likelihood]" possible_action_1.effect_likelihoods[0].likelihood %>><br>
+  <input type="text" id="effect_likelihood_1_likelihood" name="possible_actions[][likelihood]" placeholder=<%=possible_action_1.effect_likelihoods[0].likelihood %> value=<%=possible_action_1.effect_likelihoods[0].likelihood %>><br>
 
   <!-- Possible Action 2 -->
   <h3>Possible Action 2:</h3>
   <label for="possible_action_2_description">Description:</label>
-  <input type="text" id="concerned_party_2_description" name="possible_actions[][description]" placeholder=<%= possible_action_2.description %>><br>
+  <input type="text" id="concerned_party_2_description" name="possible_actions[][description]" placeholder=<%= possible_action_2.description %> value=<%= possible_action_2.description %>><br>
 
   <!-- Possible Action 2: Effect Likelihood -->
   <h4>Effect Likelihood:</h4>
-  <label for="affected_party_2">Affected Party:</label>
-  <input type="radio" id="effect_likelihood_2_affected_party_1" name="effect_likelihood_2_affected_party" value="1" <%= 'checked' if possible_action_2.effect_likelihoods[0].affected_party == concerned_party_1%>><br>
-  <input type="radio" id="effect_likelihood_2_affected_party_2" name="effect_likelihood_2_affected_party" value="2" <%= 'checked' if possible_action_2.effect_likelihoods[0].affected_party == concerned_party_2%>><br>
+  <label for="concerned_party_2">Affected Party:</label><br>
+  <label for="effect_likelihood_2_concerned_party_1">1</label>
+  <input type="radio" id="effect_likelihood_2_concerned_party_1" name="effect_likelihood_2_concerned_party" value="1" <%= 'checked' if possible_action_2.effect_likelihoods[0].concerned_party == concerned_party_1%>><br>
 
-  <label for="effect_likelihood_2_attribute">Attribute:</label>
-  <input type="text" id="effect_likelihood_2_attribute" name="possible_actions[][attribute]" placeholder=<%= possible_action_2.effect_likelihoods[0].attribute %>><br>
+  <label for="effect_likelihood_2_concerned_party_2">1</label>
+  <input type="radio" id="effect_likelihood_2_concerned_party_2" name="effect_likelihood_2_concerned_party" value="2" <%= 'checked' if possible_action_2.effect_likelihoods[0].concerned_party == concerned_party_2%>><br>
+
+  <label for="effect_likelihood_2_characteristic">characteristic:</label>
+  <input type="text" id="effect_likelihood_2_characteristic" name="possible_actions[][characteristic]" placeholder=<%= possible_action_2.effect_likelihoods[0].characteristic %> value=<%= possible_action_2.effect_likelihoods[0].characteristic %>><br>
 
   <label for="effect_likelihood_2_operation">Operation:</label>
-  <input type="text" id="effect_likelihood_2_operation" name="possible_actions[][operation]" possible_action_2.effect_likelihoods[0].operation %>><br>
+  <input type="text" id="effect_likelihood_2_operation" name="possible_actions[][operation]" placeholder=<%= possible_action_2.effect_likelihoods[0].operation %> value=<%= possible_action_2.effect_likelihoods[0].operation %>><br>
 
   <label for="effect_likelihood_2_likelihood">Likelihood:</label>
-  <input type="text" id="effect_likelihood_2_likelihood" name="possible_actions[][likelihood]" possible_action_2.effect_likelihoods[0].likelihood %>><br>
+  <input type="text" id="effect_likelihood_2_likelihood" name="possible_actions[][likelihood]" placeholder=<%= possible_action_2.effect_likelihoods[0].likelihood %> value=<%= possible_action_2.effect_likelihoods[0].likelihood %>><br>
 
   <input type="submit" id="submit" name="submit" value="submit">
+</form>
+<br><br>
+
+<form action="/ethical_arguments/<%= @ethical_argument.id %>" method="POST">
+  <input type="hidden" id="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete Ethical Argument">
 </form>
