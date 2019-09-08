@@ -157,35 +157,35 @@ class EthicalArgumentsController < ApplicationController
       concerned_party_1.update(params["concerned_partys"][0])
       concerned_party_2.update(params["concerned_partys"][1])
 
-      circumstance_1 = concerned_party_1[0]
-      circumstance_2 = concerned_party_2[0]
+      circumstance_1 = ethical_argument.circumstances[0]
+      circumstance_2 = ethical_argument.circumstances[1]
 
       circumstance_1.update(params["circumstances"][0])
       circumstance_2.update(params["circumstances"][1])
 
       #in future, be able to add circumstances, concerned parties and so on when editing ethical argument
-      imperative_ranking_1 = concerned_party_1.imperative_rankings[0]
-      imperative_ranking_2 = concerned_party_1.imperative_rankings[0]
+      imperative_ranking_1 = ethical_argument.imperative_rankings[0]
+      imperative_ranking_2 = ethical_argument.imperative_rankings[1]
 
-      imperative_ranking_1.update(params[imperative_rankings][0])
-      imperative_ranking_2.update(params[imperative_rankings][1])
+      imperative_ranking_1.update(params["imperative_rankings"][0])
+      imperative_ranking_2.update(params["imperative_rankings"][1])
 
       possible_action_1 = ethical_argument.possible_actions[0]
       possible_action_2 = ethical_argument.possible_actions[1]
 
-      possible_action_1.update(params[possible_actions][0])
-      possible_action_2.update(params[possible_actions][1])
+      possible_action_1.update(params["possible_actions"][0])
+      possible_action_2.update(params["possible_actions"][1])
 
       effect_likelihood_1 = possible_action_1.effect_likelihoods[0]
       effect_likelihood_2 = possible_action_2.effect_likelihoods[0]
 
-      effect_likelihood_1.update(params[effect_likelihoods][0])
-      effect_likelihood_2.update(params[effect_likelihoods][1])
+      effect_likelihood_1.update(params["effect_likelihoods"][0])
+      effect_likelihood_2.update(params["effect_likelihoods"][1])
 
-      effect_likelihood_1.affected_party = (params[effect_likelihood_1_affected_party] == 1) ? concerned_party_1 : concerned_party_2
-      effect_likelihood_2.affected_party = (params[effect_likelihood_2_affected_party] == 1) ? concerned_party_1 : concerned_party_2
+      effect_likelihood_1.concerned_party = (params["effect_likelihood_1_affected_party"] == 1) ? concerned_party_1 : concerned_party_2
+      effect_likelihood_2.concerned_party = (params["effect_likelihood_2_affected_party"] == 1) ? concerned_party_1 : concerned_party_2
 
-      ethical_argument.editors << current_user if !ethical_argument.editors.include?(user)
+      ethical_argument.editors << current_user if !ethical_argument.editors.include?(current_user)
 
       redirect "/ethical_arguments/#{ethical_argument.id}"
     else

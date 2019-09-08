@@ -94,5 +94,14 @@ class UsersController < ApplicationController
     end
   end
 
+  delete "/users/:id" do
+    if logged_in?
+      User.destroy(current_user.id)
+      redirect '/logout'
+    else
+      redirect '/login'
+    end
+  end
+
   #in future, patch pasword too
 end

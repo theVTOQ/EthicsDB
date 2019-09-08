@@ -64,19 +64,19 @@
   <h4>Effect Likelihood:</h4>
   <label for="concerned_party_1">Affected Party:</label><br>
   <label for="effect_likelihood_1_concerned_party_1">1</label>
-  <input type="radio" id="effect_likelihood_1_concerned_party_1" name="effect_likelihood_1_concerned_party" value="1" <%= 'checked' if possible_action_1.effect_likelihoods[0].concerned_party == concerned_party_1%>><br>
+  <input type="radio" id="effect_likelihood_1_concerned_party_1" name="effect_likelihoods[][concerned_party_id]" value=<%= concerned_party_1.id %> <% 'checked' if possible_action_1.effect_likelihoods[0].concerned_party == concerned_party_1 %>><br>
 
   <label for="effect_likelihood_1_concerned_party_2">2</label>  
-  <input type="radio" id="effect_likelihood_1_concerned_party_2" name="effect_likelihood_1_concerned_party" value="2" <%= 'checked' if possible_action_1.effect_likelihoods[0].concerned_party == concerned_party_2%>><br>
+  <input type="radio" id="effect_likelihood_1_concerned_party_2" name="effect_likelihoods[][concerned_party_id]" value=<%= concerned_party_1.id %> <% 'checked' if possible_action_1.effect_likelihoods[0].concerned_party == concerned_party_2%>><br>
 
   <label for="effect_likelihood_1_characteristic">characteristic:</label>
-  <input type="text" id="effect_likelihood_1_characteristic" name="possible_actions[][characteristic]" placeholder=<%= possible_action_1.effect_likelihoods[0].characteristic %> value=<%= possible_action_1.effect_likelihoods[0].characteristic %>><br>
+  <input type="text" id="effect_likelihood_1_characteristic" name="effect_likelihoods[][characteristic]" placeholder=<%= possible_action_1.effect_likelihoods[0].characteristic %> value=<%= possible_action_1.effect_likelihoods[0].characteristic %>><br>
 
   <label for="effect_likelihood_1_operation">Operation:</label>
-  <input type="text" id="effect_likelihood_1_operation" name="possible_actions[][operation]" placeholder=<%=possible_action_1.effect_likelihoods[0].operation %> value=<%=possible_action_1.effect_likelihoods[0].operation %>><br>
+  <input type="text" id="effect_likelihood_1_operation" name="effect_likelihoods[][operation]" placeholder=<%=possible_action_1.effect_likelihoods[0].operation %> value=<%=possible_action_1.effect_likelihoods[0].operation %>><br>
 
   <label for="effect_likelihood_1_likelihood">Likelihood:</label>
-  <input type="text" id="effect_likelihood_1_likelihood" name="possible_actions[][likelihood]" placeholder=<%=possible_action_1.effect_likelihoods[0].likelihood %> value=<%=possible_action_1.effect_likelihoods[0].likelihood %>><br>
+  <input type="text" id="effect_likelihood_1_likelihood" name="effect_likelihoods[][likelihood]" placeholder=<%=possible_action_1.effect_likelihoods[0].likelihood %> value=<%=possible_action_1.effect_likelihoods[0].likelihood %>><br>
 
   <!-- Possible Action 2 -->
   <h3>Possible Action 2:</h3>
@@ -87,19 +87,19 @@
   <h4>Effect Likelihood:</h4>
   <label for="concerned_party_2">Affected Party:</label><br>
   <label for="effect_likelihood_2_concerned_party_1">1</label>
-  <input type="radio" id="effect_likelihood_2_concerned_party_1" name="effect_likelihood_2_concerned_party" value="1" <%= 'checked' if possible_action_2.effect_likelihoods[0].concerned_party == concerned_party_1%>><br>
+  <input type="radio" id="effect_likelihood_2_concerned_party_1" name="effect_likelihoods[][concerned_party_id]" value=<%= concerned_party_1.id %> <%= 'checked' if possible_action_2.effect_likelihoods[0].concerned_party == concerned_party_1%>><br>
 
-  <label for="effect_likelihood_2_concerned_party_2">1</label>
-  <input type="radio" id="effect_likelihood_2_concerned_party_2" name="effect_likelihood_2_concerned_party" value="2" <%= 'checked' if possible_action_2.effect_likelihoods[0].concerned_party == concerned_party_2%>><br>
+  <label for="effect_likelihood_2_concerned_party_2">2</label>
+  <input type="radio" id="effect_likelihood_2_concerned_party_2" name="effect_likelihoods[][concerned_party_id]" value=<%= concerned_party_2.id %> <%= 'checked' if possible_action_2.effect_likelihoods[0].concerned_party == concerned_party_2%>><br>
 
   <label for="effect_likelihood_2_characteristic">characteristic:</label>
-  <input type="text" id="effect_likelihood_2_characteristic" name="possible_actions[][characteristic]" placeholder=<%= possible_action_2.effect_likelihoods[0].characteristic %> value=<%= possible_action_2.effect_likelihoods[0].characteristic %>><br>
+  <input type="text" id="effect_likelihood_2_characteristic" name="effect_likelihoods[][characteristic]" placeholder=<%= possible_action_2.effect_likelihoods[0].characteristic %> value=<%= possible_action_2.effect_likelihoods[0].characteristic %>><br>
 
   <label for="effect_likelihood_2_operation">Operation:</label>
-  <input type="text" id="effect_likelihood_2_operation" name="possible_actions[][operation]" placeholder=<%= possible_action_2.effect_likelihoods[0].operation %> value=<%= possible_action_2.effect_likelihoods[0].operation %>><br>
+  <input type="text" id="effect_likelihood_2_operation" name="effect_likelihoods[][operation]" placeholder=<%= possible_action_2.effect_likelihoods[0].operation %> value=<%= possible_action_2.effect_likelihoods[0].operation %>><br>
 
   <label for="effect_likelihood_2_likelihood">Likelihood:</label>
-  <input type="text" id="effect_likelihood_2_likelihood" name="possible_actions[][likelihood]" placeholder=<%= possible_action_2.effect_likelihoods[0].likelihood %> value=<%= possible_action_2.effect_likelihoods[0].likelihood %>><br>
+  <input type="text" id="effect_likelihood_2_likelihood" name="effect_likelihoods[][likelihood]" placeholder=<%= possible_action_2.effect_likelihoods[0].likelihood %> value=<%= possible_action_2.effect_likelihoods[0].likelihood %>><br>
 
   <input type="submit" id="submit" name="submit" value="submit">
 </form>
