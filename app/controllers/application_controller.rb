@@ -23,9 +23,27 @@ class ApplicationController < Sinatra::Base
     end
 
     def sort_and_rank(ethical_arguments)
-      ethical_arguments.map {
-        |ethical_argument| [ethical_argument.topic, [ethical_argument]]
-      }.to_h.each{|topic, list| list.sort_by {|ethical_argument| ethical_argument.subscribers.count }}
+      sorted_and_ranked = {}
+      #ethical_arguments.map {
+      #  |ethical_argument| [ethical_argument.topic, [ethical_argument]]
+      #}.to_h.each{|topic, list| list.sort_by {|ethical_argument| ethical_argument.subscribers.count }}
+      ethical_arguments.each do |ethical_argument|
+        topic = ethical_argument.topic
+        if sorted_and_ranked.key?(topic)
+          sorted_and_ranked[topic] << ethical_argument unless sorted_and_ranked[topic].include?(ethical_argument)
+        else
+          sorted_and_ranked[topic] = [ethical_argument]
+        end 
+      end
+
+      sorted_and_ranked.each do |topic, ethical_arguments|
+        ethical_arguments.sort_by{|ethical_argument| ethical_argument.subscribers.length }
+        #ethical_arguments.each do |ethical_argument|
+
+        #end
+      end
+
+      sorted_and_ranked
     end
 
     def rank_morality_of_possible_actions(possible_actions, imperative_rankings)

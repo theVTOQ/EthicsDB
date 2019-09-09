@@ -6,19 +6,22 @@
   <body>
 
     <div class="container">
-      <h1>
+      <h1>>Welcome to EthicsDB!</h1>
       <% if logged_in? %>
-        Hi <%= current_user.username %>!
+        <h2>Hi <%= current_user.username %>!</h2>
+
+        <p>Click <a href="/ethical_arguments/authored">here</a> to view the ethical arguments you've authored.</p>
+        <p>Click <a href="/ethical_arguments/subscribed">here</a> to view the ethical arguments you subscribe to.</p>
+        <p>Click  <a href="/ethical_arguments/new">here</a> to create a new ethical argument.</p>
       <% end %>
-      Welcome to EthicsDB!
-      </h1>
       <h2>Objectifying Subjectivity Since 2019</h2>
     
       <%= yield %>
 
       <br>
       <% if logged_in? %>
-        <a href="/users/<%= current_user.slug %>/edit">Edit Profile</a>
+        <a href="/users/<%= current_user.slug %>/edit">Edit Profile</a><br>
+        <a href="/logout">Logout</a>
       <% end %>
     </div>
 

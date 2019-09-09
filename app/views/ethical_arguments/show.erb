@@ -1,5 +1,3 @@
-<p>Click <a href="/authored">here</a> to view the ethical arguments you've authored.</p>
-
 <h2><%= @ethical_argument.title %></h2>
 <h3>Topic: <%= @ethical_argument.topic %></h3>
 <p>Summary: <%= @ethical_argument.summary %></p>
@@ -58,7 +56,6 @@
 </ol>
 
 <!-- interaction options: -->
-<p>Validation: <%= @ethical_argument.authors.include?(current_user) %></p>
 <% if @ethical_argument.authors.include?(current_user) %>  
   <a href="/ethical_arguments/<%= @ethical_argument.id %>/edit">Edit Ethical Argument</a>
   

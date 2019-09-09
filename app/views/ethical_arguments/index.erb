@@ -1,9 +1,3 @@
-<h1>Welcome, <%= @user.username %></h1>
-
-<p>Click <a href="/ethical_arguments/authored">here</a> to view the ethical arguments you've authored.</p>
-<p>Click <a href="/ethical_arguments/subscribed">here</a> to view the ethical arguments you subscribe to.</p>
-<p>Click  <a href="/ethical_arguments/new">here</a> to create a new ethical argument.</p>
-
 <h2>Here is a Catalog of all Ethical Arguments Sorted by Topic and Ranked by Subscriber Count:</h2>
 <ul>
 <% @sorted_and_ranked_args.each do |topic, ethical_arguments| %>
@@ -11,10 +5,10 @@
     <h3>Topic: <%= topic.capitalize %></h3>
     <ol>
     <% ethical_arguments.each do |ethical_argument| %>
-      <% if !ethical_argument.is_private %>
+      <% if ethical_argument.is_private == nil %>
         <li>
           <a href="/ethical_arguments/<%= ethical_argument.id %>"><%= ethical_argument.title %></a>
-          <p><%= ethical_argument.summary %>
+          <p><%= ethical_argument.summary %></p>
         </li><br>
       <% end %>
     <% end %>

@@ -182,8 +182,9 @@ class EthicalArgumentsController < ApplicationController
       effect_likelihood_1.update(params["effect_likelihoods"][0])
       effect_likelihood_2.update(params["effect_likelihoods"][1])
 
-      effect_likelihood_1.concerned_party = (params["effect_likelihood_1_affected_party"] == 1) ? concerned_party_1 : concerned_party_2
-      effect_likelihood_2.concerned_party = (params["effect_likelihood_2_affected_party"] == 1) ? concerned_party_1 : concerned_party_2
+      #effect_likelihood_1.concerned_party = (params["effect_likelihood_1_concerned_party"] == 1) ? concerned_party_1 : concerned_party_2
+      effect_likelihood_1.concerned_party_id = params["effect_likelihood_1_concerned_party"]
+      effect_likelihood_2.concerned_party_id = params["effect_likelihood_2_concerned_party"]
 
       ethical_argument.editors << current_user if !ethical_argument.editors.include?(current_user)
 
