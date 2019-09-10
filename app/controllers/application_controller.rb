@@ -22,6 +22,19 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
 
+    def unique_topics
+      unique_topics = []
+      EthicalArgument.all.each do |ethical_argument|
+        topic = ethical_argument.topic
+        unique_topics << topic unless unique_topics.include?(topic)
+      end
+      unique_topics
+    end
+
+    def ethical_arguments_by_topic(topic)
+      EthicalArgument.where(topic: topic)
+    end
+
     def sort_and_rank(ethical_arguments)
       sorted_and_ranked = {}
       #ethical_arguments.map {

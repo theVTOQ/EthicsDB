@@ -6,7 +6,14 @@
   <body>
 
     <div class="container">
-      <h1>>Welcome to EthicsDB!</h1>
+      <h1>Welcome to EthicsDB!</h1>
+      <h2>Objectifying Subjectivity Since 2019</h2>
+      
+      <h3>Topics:</h3>
+      <% unique_topics.each do |topic| %>
+        <a href="/ethical_arguments/topics/<%= topic %>"><%= topic %></a>
+      <% end %><br>
+
       <% if logged_in? %>
         <h2>Hi <%= current_user.username %>!</h2>
 
@@ -14,7 +21,6 @@
         <p>Click <a href="/ethical_arguments/subscribed">here</a> to view the ethical arguments you subscribe to.</p>
         <p>Click  <a href="/ethical_arguments/new">here</a> to create a new ethical argument.</p>
       <% end %>
-      <h2>Objectifying Subjectivity Since 2019</h2>
     
       <%= yield %>
 

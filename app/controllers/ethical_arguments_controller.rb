@@ -81,6 +81,13 @@ class EthicalArgumentsController < ApplicationController
     end
   end
 
+  get '/ethical_arguments/topics/:topic' do 
+    @topic = params[:topic]
+    @matching_ethical_arguments = ethical_arguments_by_topic(@topic).sort_by {|ethical_argument| ethical_argument.subscribers.length}
+
+    erb :"/ethical_arguments/single_topic"
+  end
+  
   post '/subscribe/:id' do
     ethical_argument = EthicalArgument.find(params[:id])
 

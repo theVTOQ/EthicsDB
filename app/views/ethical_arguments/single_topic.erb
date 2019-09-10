@@ -1,0 +1,8 @@
+<h2>Topic: <%= @topic %></h2>
+<ol>
+<% @matching_ethical_arguments.each do |ethical_argument| %>
+    <li>
+        <a href="/ethical_arguments/<%= ethical_argument.id %>"> <%= ethical_argument.title %> </a>
+    </li>
+<% end %>
+</ol>
