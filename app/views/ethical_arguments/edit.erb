@@ -3,13 +3,13 @@
   <input type="hidden" id="hidden" name="_method" value="patch">
 
   <label for="title">Title:</label>
-  <input type="text" id="title" name="ethical_argument[title]" placeholder=<%= @ethical_argument.title %>><br>
+  <input type="text" id="title" name="ethical_argument[title]" placeholder=<%= @ethical_argument.title %> value="<%= @ethical_argument.title %>"><br>
 
   <label for="topic">Topic:</label>
-  <input type="text" id="topic" name="ethical_argument[topic]" placeholder=<%= @ethical_argument.topic %>><br>
+  <input type="text" id="topic" name="ethical_argument[topic]" placeholder=<%= @ethical_argument.topic %> value="<%= @ethical_argument.topic %>"><br>
 
   <label for="summary">Summary:</label>
-  <input type="text" id="summary" name="ethical_argument[summary]" placeholder=<%= @ethical_argument.summary %>><br>
+  <input type="text" id="summary" name="ethical_argument[summary]" placeholder=<%= @ethical_argument.summary %> value="<%= @ethical_argument.summary %>"><br>
 
   <% concerned_party_1 = @ethical_argument.concerned_partys[0] %>
   <% concerned_party_2 = @ethical_argument.concerned_partys[1] %>

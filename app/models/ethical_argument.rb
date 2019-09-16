@@ -21,4 +21,29 @@ class EthicalArgument < ActiveRecord::Base
   
   has_many :action_ethical_arguments
   has_many :possible_actions, through: :action_ethical_arguments
+
+  def self.sort_and_rank
+    #binding.pry
+    sorted_and_ranked = {}
+    #ethical_arguments.map {
+    #  |ethical_argument| [ethical_argument.topic, [ethical_argument]]
+    #}.to_h.each{|topic, list| list.sort_by {|ethical_argument| ethical_argument.subscribers.count }}
+    self.all.each do |ethical_argument|
+      topic = ethical_argument.topic
+      if sorted_and_ranked.key?(topic)
+        sorted_and_ranked[topic] << ethical_argument unless sorted_and_ranked[topic].include?(ethical_argument)
+      else
+        sorted_and_ranked[topic] = [ethical_argument]
+      end 
+    end
+
+    sorted_and_ranked.each do |topic, ethical_arguments|
+      ethical_arguments.sort_by{|ethical_argument| ethical_argument.subscribers.length }
+      #ethical_arguments.each do |ethical_argument|
+
+      #end
+    end
+
+    sorted_and_ranked
+  end
 end

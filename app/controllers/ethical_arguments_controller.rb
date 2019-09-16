@@ -3,7 +3,7 @@ class EthicalArgumentsController < ApplicationController
   get '/ethical_arguments' do
     if logged_in?
       @user = current_user
-      @sorted_and_ranked_args = sort_and_rank(EthicalArgument.all)
+      @sorted_and_ranked_args = EthicalArgument.all.sort_and_rank
 
       erb :"/ethical_arguments/index"
     else
@@ -12,70 +12,54 @@ class EthicalArgumentsController < ApplicationController
   end
 
   get '/ethical_arguments/authored' do
-    if logged_in?
-      @user = current_user
-      @authored = sort_and_rank(@user.authored_ethical_arguments)
-      #@sorted_and_ranked_aut = sort_and_rank(@user.authored_ethical_arguments)
+    redirect_if_not_logged_in
+    @user = current_user
+    @authored = @user.authored_ethical_arguments.sort_and_rank
+    #@sorted_and_ranked_aut = sort_and_rank(@user.authored_ethical_arguments)
 
-      erb :"/ethical_arguments/authored"
-    else
-      redirect '/login'
-    end
+    erb :"/ethical_arguments/authored"
   end
 
   get '/ethical_arguments/edited' do
-    if logged_in?
-      @edited = sort_and_rank(current_user.edited_ethical_arguments)
+    redirect_if_not_logged_in
+    @edited = current_user.edited_ethical_arguments.sort_and_rank
 
-      erb :"/ethical_arguments/edited"
-    else
-      redirect '/login'
-    end
+    erb :"/ethical_arguments/edited"
   end
 
   get '/ethical_arguments/subscribed' do
-    if logged_in?
-      @user = current_user
-      @subscribed = sort_and_rank(@user.subscribed_ethical_arguments)
-      #@authored = (@user.compositions != nil) ? sort_and_rank(@user.compositions) : {}
-      #@edited = (@user.edits != nil) ? sort_and_rank(@user.edits) : {}
-
-      erb :"/ethical_arguments/subscribed"
-    else
-      redirect '/login'
-    end
+    redirect_if_not_logged_in
+    @user = current_user
+    @subscribed = @user.subscribed_ethical_arguments.sort_and_rank
+  
+    erb :"/ethical_arguments/subscribed"
   end
 
   get '/ethical_arguments/new' do
-    if logged_in?
-      @user = current_user
-      @current_partys = []
+    redirect_if_not_logged_in
+    @user = current_user
+    @current_partys = []
 
-      erb :"/ethical_arguments/new"
-    else
-      redirect '/login'
-    end
+    erb :"/ethical_arguments/new"
   end
 
   get '/ethical_arguments/:id' do
-    if logged_in?
-      @ethical_argument = EthicalArgument.find(params[:id])
+    @ethical_argument = EthicalArgument.find_by(id: params[:id])
 
+    if @ethical_argument != nil
       erb :"/ethical_arguments/show"
     else
-      redirect '/login'
+      #error message
+      redirect '/ethical_arguments'
     end
   end
 
   get '/ethical_arguments/:id/edit' do
-    if logged_in?
-      @ethical_argument  = EthicalArgument.find(params[:id])
+    redirect_if_not_logged_in
+    @ethical_argument  = EthicalArgument.find_by(id: params[:id])
 
-      if current_user.authored_ethical_arguments.include?(@ethical_argument)
-        erb :"/ethical_arguments/edit"
-      else
-        redirect '/login'
-      end
+    if current_user.authored_ethical_arguments.include?(@ethical_argument)
+      erb :"/ethical_arguments/edit"
     else
       redirect '/login'
     end
@@ -89,6 +73,7 @@ class EthicalArgumentsController < ApplicationController
   end
   
   post '/subscribe/:id' do
+    redirect_if_not_logged_in
     ethical_argument = EthicalArgument.find(params[:id])
 
     current_user.subscribed_ethical_arguments << ethical_argument
@@ -96,6 +81,7 @@ class EthicalArgumentsController < ApplicationController
   end
 
   post '/unsubscribe/:id' do
+    redirect_if_not_logged_in
     ethical_argument = EthicalArgument.find(params[:id])
 
     current_user.subscribed_ethical_arguments.delete(ethical_argument)
@@ -103,7 +89,9 @@ class EthicalArgumentsController < ApplicationController
   end
 
   post '/ethical_arguments/authored' do
-    if !params["ethical_argument"].empty?
+    #binding.pry
+    redirect_if_not_logged_in
+    if !params["ethical_argument"]["title"].empty?
       #in future, use find_or_create_by ?
       
       concerned_party_1 = ConcernedParty.create(params["concerned_parties"][0])
@@ -153,7 +141,8 @@ class EthicalArgumentsController < ApplicationController
   end
 
   patch '/ethical_arguments/:id' do
-    if !params["ethical_argument"].empty?
+    redirect_if_not_logged_in
+    if current_user.authored_ethical_arguments.include?(@ethical_argument) && !params["ethical_argument"].empty?
       #in future, use find_or_create_by ?
       ethical_argument = EthicalArgument.find(params[:id])
       ethical_argument.update(params["ethical_argument"])
@@ -202,17 +191,14 @@ class EthicalArgumentsController < ApplicationController
   end
 
   delete '/ethical_arguments/:id' do
-    if logged_in?
-      ethical_argument = EthicalArgument.find(params[:id])
+    redirect_if_not_logged_in
+    ethical_argument = EthicalArgument.find(params[:id])
 
-      if current_user.authored_ethical_arguments.include?(ethical_argument)
-        ethical_argument.destroy
-        redirect '/ethical_arguments/authored'
-      else
-        redirect '/ethical_arguments/authored'
-      end
+    if current_user.authored_ethical_arguments.include?(ethical_argument)
+      ethical_argument.destroy
+      redirect '/ethical_arguments/authored'
     else
-      redirect '/login'
+      redirect '/ethical_arguments/authored'
     end
   end
 end
